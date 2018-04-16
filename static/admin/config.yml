@@ -8,18 +8,15 @@ public_folder: "/images/uploads"
 
 collections: # A list of collections the CMS should be able to edit
   - name: "section"
-    label: "Secció"
-    folder: "content/posts"
+    label: "Create new section"
+    folder: "content"
     create: true
-    slug: "{{slug}}.{{language}}"
+    slug: "{{folder}}/_index.{{language}}"
     fields:
       - {label: "Esborrany", name: "draft", widget: "boolean", default: true, required: false}
       - {label: "Idioma", name: "language", widget: "select", options: ["ca", "es", "en"]}
-      - {label: "Autor", name: "author", widget: "string", required: true}
+      - {label: "Folder", name: "folder", widget: "string", required: true, default: "/"}
       - {label: "Títol", name: "title", widget: "string", tagname: "h1"}
-      - {label: "Descripció", name: "description", widget: "text", required: false}
-      - {label: "Data", name: "date", widget: "datetime"}
-      - {label: "Contingut", name: "body", widget: "markdown"}
     meta:
       - {label: "Date", name: "date", widget: "datetime"}
     editor:
