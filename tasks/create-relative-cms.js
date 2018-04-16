@@ -7,11 +7,10 @@ var cmsDir = "./tasks/cms/";
 function createRelCms(directory){
   var dest = directory.replace("/content/", "/static/").replace("\\content\\", "\\static\\");
   var folder = directory.slice(directory.indexOf("content")).replace(/\\/g,"/");
-  //fs.mkdirSync(dest);
-  //fs.mkdirSync(dest + "/admin");
-  //fs.copyFileSync(cmsDir + "index.html", dest + "/admin/index.html");
-  //fs.copyFileSync(cmsDir + "config.yml", dest + "/admin/config.yml");
-  console.log(cmsConfig.replace("{{folder}}", folder));
+  fs.mkdirSync(dest);
+  fs.mkdirSync(dest + "/admin");
+  fs.copyFileSync(cmsDir + "index.html", dest + "/admin/index.html");
+  fs.copyFileSync(cmsDir + "config.yml", dest + "/admin/config.yml");
 }
 
 var walk = function(dir, done) {
