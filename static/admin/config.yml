@@ -9,7 +9,7 @@ public_folder: "/images/uploads"
 collections: # A list of collections the CMS should be able to edit
   - name: "section"
     label: "Create new section"
-    folder: "content/{{folder}}"
+    folder: "content"
     create: true
     extension: {{language}}.md
     slug: "{{folder}}/_index"
