@@ -9,9 +9,10 @@ public_folder: "/images/uploads"
 collections: # A list of collections the CMS should be able to edit
   - name: "section"
     label: "Create new section"
-    folder: "content"
+    folder: "content/{{folder}}"
     create: true
-    slug: "{{folder}}/_index.{{language}}"
+    extension: {{language}}.md
+    slug: "{{folder}}/_index"
     fields:
       - {label: "Esborrany", name: "draft", widget: "boolean", default: true, required: false}
       - {label: "Idioma", name: "language", widget: "select", options: ["ca", "es", "en"]}
@@ -20,4 +21,4 @@ collections: # A list of collections the CMS should be able to edit
     meta:
       - {label: "Date", name: "date", widget: "datetime"}
     editor:
-      - preview: false 
+      - preview: false
