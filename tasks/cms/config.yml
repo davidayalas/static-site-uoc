@@ -9,14 +9,14 @@ public_folder: "/images/uploads"
 collections: # A list of collections the CMS should be able to edit
   - name: "content"
     label: "Contingut"
-    folder: "content"
+    folder: "{{folder}}"
     create: true
-    slug: "{{slug}}.{{language}}"
+    slug: "{{urlkey}}.{{language}}"
     fields:
       - {label: "Esborrany", name: "draft", widget: "boolean", default: true, required: false}
       - {label: "Idioma", name: "language", widget: "select", options: ["ca", "es", "en"]}
-      - {label: "Autor", name: "author", widget: "string", required: true}
-      - {label: "Clau", name: "key", widget: "string", required: true}
+      - {label: "Autor", name: "author", widget: "string", required: false}
+      - {label: "Clau", name: "urlkey", widget: "string", required: true}
       - {label: "Títol", name: "title", widget: "string", tagname: "h1"}
       - {label: "Descripció", name: "description", widget: "text", required: false}
       - {label: "Data", name: "date", widget: "datetime"}
