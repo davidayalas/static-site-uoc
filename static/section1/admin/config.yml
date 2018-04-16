@@ -11,7 +11,7 @@ collections: # A list of collections the CMS should be able to edit
     label: "Contingut"
     folder: "{{folder}}"
     create: true
-    slug: "{{urlkey}}.{{language}}"
+    slug: "{{slug}}.{{language}}"
     fields:
       - {label: "Esborrany", name: "draft", widget: "boolean", default: true, required: false}
       - {label: "Idioma", name: "language", widget: "select", options: ["ca", "es", "en"]}

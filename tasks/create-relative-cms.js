@@ -7,12 +7,29 @@ var cmsDir = "./tasks/cms/";
 function createRelCms(directory){
   var dest = directory.replace("/content/", "/static/").replace("\\content\\", "\\static\\");
   var folder = directory.slice(directory.indexOf("content")).replace(/\\/g,"/");
+  if(fs.existsSync(dest)){
+    deleteFolderRecursive(dest);
+  }
   fs.mkdirSync(dest);
   fs.mkdirSync(dest + "/admin");
   fs.copyFileSync(cmsDir + "index.html", dest + "/admin/index.html");
   fs.copyFileSync(cmsDir + "config.yml", dest + "/admin/config.yml");
   cmsConfig.replace("{{folder}}", folder);
 }
+
+var deleteFolderRecursive = function(path) {
+  if( fs.existsSync(path) ) {
+    fs.readdirSync(path).forEach(function(file,index){
+      var curPath = path + "/" + file;
+      if(fs.lstatSync(curPath).isDirectory()) { // recurse
+        deleteFolderRecursive(curPath);
+      } else { // delete file
+        fs.unlinkSync(curPath);
+      }
+    });
+    fs.rmdirSync(path);
+  }
+};
 
 var walk = function(dir, done) {
   cmsConfig = fs.readFileSync(cmsDir + "config.yml").toString();
