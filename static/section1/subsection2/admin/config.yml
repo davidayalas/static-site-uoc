@@ -7,8 +7,8 @@ public_folder: "/images/uploads"
 #publish_mode: editorial_workflow
 
 collections: # A list of collections the CMS should be able to edit
-  - name: "section"
-    label: "Secció"
+  - name: "content"
+    label: "Contingut"
     folder: "content/section1/subsection2"
     create: true
     slug: "{{slug}}.{{language}}"
@@ -24,3 +24,51 @@ collections: # A list of collections the CMS should be able to edit
       - {label: "Date", name: "date", widget: "datetime"}
     editor:
       - preview: false
+
+  - name: "section_ca"
+    label: "Crea una nova secció"
+    folder: "content/section1/subsection2"
+    create: true
+    filter: {field: "language", value: "ca"}    
+    slug: "/{{folder}}/{{slug}}.ca"
+    fields:
+      - {label: "Esborrany", name: "draft", widget: "boolean", default: true, required: false}
+      - {label: "Idioma", name: "language", widget: "select", options: ["ca", "es", "en"]}
+      - {label: "Folder", name: "folder", widget: "string", required: false}
+      - {label: "Títol", name: "title", widget: "string", tagname: "h1"}
+    meta:
+      - {label: "Date", name: "date", widget: "datetime"}
+    editor:
+      - preview: false
+
+  - name: "section_es"
+    label: "Crea una nueva sección"
+    folder: "content/section1/subsection2"
+    create: true
+    filter: {field: "language", value: "es"}    
+    slug: "/{{folder}}/{{slug}}.es"
+    fields:
+      - {label: "Esborrany", name: "draft", widget: "boolean", default: true, required: false}
+      - {label: "Idioma", name: "language", widget: "select", options: ["ca", "es", "en"]}
+      - {label: "Folder", name: "folder", widget: "string", required: false}
+      - {label: "Títol", name: "title", widget: "string", tagname: "h1"}
+    meta:
+      - {label: "Date", name: "date", widget: "datetime"}
+    editor:
+      - preview: false      
+
+  - name: "section_en"
+    label: "Create new section"
+    folder: "content/section1/subsection2"
+    create: true
+    filter: {field: "language", value: "en"}    
+    slug: "/{{folder}}/{{slug}}.en"
+    fields:
+      - {label: "Esborrany", name: "draft", widget: "boolean", default: true, required: false}
+      - {label: "Idioma", name: "language", widget: "select", options: ["ca", "es", "en"]}
+      - {label: "Folder", name: "folder", widget: "string", required: false}
+      - {label: "Títol", name: "title", widget: "string", tagname: "h1"}
+    meta:
+      - {label: "Date", name: "date", widget: "datetime"}
+    editor:
+      - preview: false                  
