@@ -1,8 +1,9 @@
 ---
-title: Page 2 Subsection 1
+language: ca
+author: me
+title: Page 2 Subsection 1 - Edited from netlifycms
 description: Test page
-language: "ca"
-date: "2018-04-12"
+date: '2018-04-12'
 ---
 
 # Vis ne eligendi posidonium. 
