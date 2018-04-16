@@ -13,8 +13,7 @@ function createRelCms(directory){
   fs.mkdirSync(dest);
   fs.mkdirSync(dest + "/admin");
   fs.copyFileSync(cmsDir + "index.html", dest + "/admin/index.html");
-  fs.copyFileSync(cmsDir + "config.yml", dest + "/admin/config.yml");
-  cmsConfig.replace("{{folder}}", folder);
+  fs.writeFileSync(dest + "/admin/config.yml", cmsConfig.replace("{{folder}}", folder));
 }
 
 var deleteFolderRecursive = function(path) {
