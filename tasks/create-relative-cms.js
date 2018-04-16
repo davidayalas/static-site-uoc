@@ -11,6 +11,7 @@ function createRelCms(directory){
   fs.mkdirSync(dest + "/admin");
   fs.copyFileSync(cmsDir + "index.html", dest + "/admin/index.html");
   fs.copyFileSync(cmsDir + "config.yml", dest + "/admin/config.yml");
+  cmsConfig.replace("{{folder}}", folder);
 }
 
 var walk = function(dir, done) {
