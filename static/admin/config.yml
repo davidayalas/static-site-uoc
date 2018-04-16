@@ -11,7 +11,7 @@ collections: # A list of collections the CMS should be able to edit
     label: "Create new section"
     folder: "content"
     create: true
-    extension: {{language}}.md
+    extension: "{{language}}.md"
     slug: "{{folder}}/_index"
     fields:
       - {label: "Esborrany", name: "draft", widget: "boolean", default: true, required: false}
