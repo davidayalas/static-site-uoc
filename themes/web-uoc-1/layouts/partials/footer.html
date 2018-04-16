@@ -1,0 +1,33 @@
+              <div class="container">
+                <div class="row">
+                  <div class="col-sm-3 col-lg-4">
+                    <h4>Universitat Oberta de Catalunya</h4>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="pull-right editpage" style="display:none" id="cms-editor">
+                <a href="/admin/#/collections/@@collection@@/new" id="cms-editor-link-add" style="display: none">
+                  <i class="material-icons">mode add</i> Afegeix una pàgina
+                </a>
+                <a href="/admin/#/collections/@@collection@@/entries/@@entry@@" id="cms-editor-link-edit">
+                  <i class="material-icons">mode edit</i> <span id="cms-editor-link-edit-text">Edita aquesta @@pagesection@@</span>
+                </a>
+              </div>
+
+
+              <script>
+                if (window.netlifyIdentity) {
+                  window.netlifyIdentity.on("init", user => {
+                    if (!user) {
+                      window.netlifyIdentity.on("login", () => {
+                        //document.location.href = "/admin/";
+                        document.location.href = "?cms=true";
+                      });
+                    }
+                  });
+                }
+              </script>  
+
+              <script src="/js/cms.js"></script>

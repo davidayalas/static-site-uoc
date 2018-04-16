@@ -1,0 +1,13 @@
+name = "web-uoc-1"
+license = "MIT"
+licenselink = ""
+description = "Site UOC estil blau"
+homepage = "http://www.uoc.edu/"
+tags = ["site", "uoc", "education"]
+features = ["site"]
+min_version = 0.13
+
+[author]
+    name = "ais"
+    homepage = "https://www.uoc.edu"
+

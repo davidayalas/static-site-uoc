@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    {{ partial "head.html" . }}
+</head>
+
+<body class="global section">
+  <header>
+    {{ partial "header_uoc.html" . }}
+  </header>
+
+  <div id="content">
+  <!--MODAL 2-->
+    <div class="info-link" data-modal="modal2">
+      <div class="container">
+        <div class="inside-container">
+
+          <!--ROW-->
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="breadcrumbs">
+                {{ partial "breadcrumbs" . }}
+              </div>
+            </div>
+          </div>
+          <!--./ROW-->
+
+          <!--ROW-->
+          <div class="demo-filter">
+          <div class="filter-header">
+          <div class="row">
+            {{ range .Sections }}
+
+                <div class="col-sm-3">
+                  <div class="box-filter">
+                    <a href="{{.Site.Params.projectDir}}{{.URL}}">
+                      {{.Title}}
+                    </a>
+                  </div>
+                </div>
+
+            {{ end }}
+
+            {{ range .Data.Pages }}
+
+                <div class="col-sm-3">
+                  <div class="box-filter">
+                    <a href="{{.Site.Params.projectDir}}{{.URL}}">
+                      {{.Title}}
+                    </a>
+                  </div>
+                </div>
+
+            {{ end }}
+
+          </div>
+          </div>
+          </div>
+          <!--./ROW-->
+
+          </div>
+        </div>
+      </div>
+      <!--/MODAL 2-->
+    </div>
+
+    <footer role="contentinfo" class="hidden-xs">
+        {{ partial "footer.html" . }}            
+    </footer>
+
+</body>
+
+</html>

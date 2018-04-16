@@ -1,0 +1,7 @@
+[
+{{ range .Site.Pages }}
+{{ if  and (or (eq .File.LogicalName "_index.md") (eq .File.LogicalName "")) (ne .Section "") }}
+  	{"section" : "{{ .URL }}"},
+{{ end }}
+{{ end }}
+{}]

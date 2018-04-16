@@ -1,0 +1,4 @@
+title = "UOC Site Template"
+baseURL = "/"
+DefaultContentLanguage = "ca"
+theme = "web-uoc-1"
