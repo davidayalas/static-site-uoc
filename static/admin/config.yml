@@ -6,9 +6,12 @@ media_folder: "static/images/uploads" # Media files will be stored in the repo u
 public_folder: "/images/uploads"
 #publish_mode: editorial_workflow
 
-files: # A list of collections the CMS should be able to edit
-  - name: "section"
-    label: "Crea una nova secció"
-    file: "tasks/tasks.json"
-    fields:
-      - {label: "Folder", name: "absfolder", widget: "string", required: true}
+collections: # A list of collections the CMS should be able to edit
+  - name: "setup"
+    label: "Config"
+    files: "tasks/tasks.json"
+      - label: "Crea una nova secció"
+        name: "createsection"
+        files: "tasks/tasks.json"      
+        fields:
+        - {label: "Folder", name: "absfolder", widget: "string", required: true}
