@@ -32,7 +32,7 @@ collections: # A list of collections the CMS should be able to edit
     label: "Secció"
     folder: "{{folder}}"
     filter: {field: "contenttype", value: "section"}    
-    create: false
+    create: true
     slug: "_index.{{language}}"
     fields:
       - {label: "Esborrany", name: "draft", widget: "boolean", default: true, required: false}
