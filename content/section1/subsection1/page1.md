@@ -1,9 +1,11 @@
 ---
+contenttype: content
+language: ca
+urlkey: page1
+weight: '1'
 title: Page 1 Subsection 1
 description: Test page
-contenttype: "content"
-language: "ca"
-date: "2018-04-12"
+date: '2018-04-12'
 ---
 
 # Habes, inquam, Cato, formam eorum, de quibus loquor, philosophorum.
