@@ -7,11 +7,11 @@ public_folder: "/images/uploads"
 #publish_mode: editorial_workflow
 
 collections: # A list of collections the CMS should be able to edit
-  - name: "setup"
-    label: "Config"
-    files: "tasks/tasks.json"
-      - label: "Crea una nova secció"
-        name: "createsection"
-        files: "tasks/tasks.json"      
+  - label: "Pages"
+    name: "pages"
+    files:
+      - label: "Create section"
+        name: "create"
+        file: "tasks/tasks.json"
         fields:
-        - {label: "Folder", name: "absfolder", widget: "string", required: true}
+          - {label: "Folder", name: "absfolder", widget: string, required: true}
