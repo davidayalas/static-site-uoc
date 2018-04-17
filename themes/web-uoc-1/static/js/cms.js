@@ -18,8 +18,7 @@ function getUrlParams( prop ) {
 }
 
 if(getUrlParams("cms")==="true"){
-	console.log("loading cms objects...")
-
+	console.log("loading cms objects...");
     var currentHost = window.location.host;
     var path = window.location.pathname;
     path = path.split("/").filter(function(value){
@@ -37,28 +36,6 @@ if(getUrlParams("cms")==="true"){
             this.href = this.href + "?cms=true";
         }
     })
-
-    var editlink = $("#cms-editor-link-edit").attr("href");
-    var strpagesection = "pàgina";
-
-    if(path.length>0){
-        var editlink = editlink.replace("@@collection@@", path[0]);
-        if(path.length>1){
-            editlink = editlink.replace("@@entry@@", path[1]);
-        }else{
-            editlink = editlink.replace("/entries/@@entry@@", "");
-            $("#cms-editor-link-add").css("display","block");
-            var addlink = $("#cms-editor-link-add").attr("href").replace("@@collection@@", path[0]);
-            $("#cms-editor-link-add").attr("href", addlink);
-            strpagesection = "secció";
-        }
-    }else{
-        //home
-        editlink = "/admin/#/collections/home/entries/home";
-    }
-
-    $("#cms-editor-link-edit").attr("href", editlink);
-    var link_text = $("#cms-editor-link-edit-text").text();
-    $("#cms-editor-link-edit-text").text(link_text.replace("@@pagesection@@", strpagesection));
+    
     $("#cms-editor").css("display","block");
 }

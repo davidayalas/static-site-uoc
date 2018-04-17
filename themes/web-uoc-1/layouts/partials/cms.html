@@ -1,0 +1,14 @@
+    <div class="row" style="display:none; margin-top:.5em; padding:.5em; padding-left: 1em; border:1px solid #ccc!important; background-color: #000; color: #fff" id="cms-editor">
+
+      {{ $collection := replace .URL .File "" }}
+      <div class="pull-left editpage">
+        <a href="{{ $collection }}admin/#/collections/content/new" id="cms-editor-link-add" style="_display: none; color: #fff;">
+          <span class="icon icon--plus text-small" aria-hidden="true"></span> Afegeix una entrada
+        </a>
+        <a href="{{ $collection }}admin/#/collections/content/entries/{{.File}}" id="cms-editor-link-edit" style="_display: none; color: #fff;">
+          <span class="icon icon--edit text-small" aria-hidden="true"></span>Edita aquesta entrada</span>
+        </a>
+      </div>
+    </div>
+
+    <script src="/js/cms.js"></script>

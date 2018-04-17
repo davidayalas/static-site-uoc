@@ -1,6 +1,7 @@
 title = "UOC Site Template"
 baseURL = "/"
 DefaultContentLanguage = "ca"
+defaultContentLanguageInSubdir = true
 theme = "web-uoc-1"
 
 [languages]
@@ -9,4 +10,3 @@ theme = "web-uoc-1"
     title = "Blog UOC - ca"
     weight = 1
     languageName = "Català"
-    

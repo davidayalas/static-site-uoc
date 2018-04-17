@@ -4,6 +4,7 @@ var cmsConfig = null;
 
 var cmsDir = "./tasks/cms/";
 
+// creates /admin folder in every "section"
 function createRelCms(directory){
   var dest = directory.replace("/content/", "/static/").replace("\\content\\", "\\static\\");
   var folder = directory.slice(directory.indexOf("content")).replace(/\\/g,"/");
@@ -16,6 +17,7 @@ function createRelCms(directory){
   fs.writeFileSync(dest + "/admin/config.yml", cmsConfig.replace("{{folder}}", folder));
 }
 
+//deletes folder if exists
 var deleteFolderRecursive = function(path) {
   if( fs.existsSync(path) ) {
     fs.readdirSync(path).forEach(function(file,index){
@@ -30,6 +32,7 @@ var deleteFolderRecursive = function(path) {
   }
 };
 
+//loop over folders
 var walk = function(dir, done) {
   cmsConfig = fs.readFileSync(cmsDir + "config.yml").toString();
 
@@ -57,7 +60,7 @@ var walk = function(dir, done) {
   });
 };
 
-//Renames netlifycms language files with "-[lang].md" to ".[lang].md"
+//loop content folder
 walk("./content", function(err, message){
   if(err){
     console.log("error " + err);
