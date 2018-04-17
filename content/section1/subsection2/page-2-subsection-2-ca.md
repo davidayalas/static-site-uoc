@@ -1,6 +1,7 @@
 ---
 draft: false
 language: ca
+contenttype = "content"
 author: ''
 urlkey: page22
 title: Page 2 subsection 2

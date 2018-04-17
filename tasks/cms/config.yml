@@ -10,10 +10,12 @@ collections: # A list of collections the CMS should be able to edit
   - name: "content"
     label: "Contingut"
     folder: "{{folder}}"
+    filter: {field: "contenttype", value: "content"}    
     create: true
     slug: "{{slug}}.{{language}}"
     fields:
       - {label: "Esborrany", name: "draft", widget: "boolean", default: true, required: false}
+      - {label: "Content Type", name: "contenttype", widget: "hidden", default: "content"}
       - {label: "Idioma", name: "language", widget: "select", options: ["ca", "es", "en"]}
       - {label: "Autor", name: "author", widget: "string", required: false}
       - {label: "Clau", name: "urlkey", widget: "string", required: true}
@@ -21,6 +23,23 @@ collections: # A list of collections the CMS should be able to edit
       - {label: "Descripció", name: "description", widget: "text", required: false}
       - {label: "Data", name: "date", widget: "datetime"}
       - {label: "Contingut", name: "body", widget: "markdown"}
+    meta:
+      - {label: "Date", name: "date", widget: "datetime"}
+    editor:
+      - preview: false
+
+  - name: "section"
+    label: "Secció"
+    folder: "{{folder}}"
+    filter: {field: "contenttype", value: "section"}    
+    create: false
+    slug: "_index.{{language}}"
+    fields:
+      - {label: "Esborrany", name: "draft", widget: "boolean", default: true, required: false}
+      - {label: "Content Type", name: "contenttype", widget: "hidden", default: "section"}
+      - {label: "Idioma", name: "language", widget: "select", options: ["ca", "es", "en"]}
+      - {label: "Títol", name: "title", widget: "string", tagname: "h1"}
+      - {label: "Descripció", name: "description", widget: "text", required: false}
     meta:
       - {label: "Date", name: "date", widget: "datetime"}
     editor:

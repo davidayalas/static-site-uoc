@@ -1,6 +1,7 @@
 ---
 title: Page 1 Subsection 1
 description: Test page
+contenttype = "content"
 language: "ca"
 date: "2018-04-12"
 ---
