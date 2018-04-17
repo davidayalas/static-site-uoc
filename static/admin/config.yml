@@ -7,8 +7,8 @@ public_folder: "/images/uploads"
 #publish_mode: editorial_workflow
 
 collections: # A list of collections the CMS should be able to edit
-  - label: "Pages"
-    name: "pages"
+  - label: "Setup"
+    name: "config"
     files:
       - label: "Create section"
         name: "create"
