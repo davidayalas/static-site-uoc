@@ -8,14 +8,17 @@ var cmsDestDir = "./static/admin/";
 // creates /admin folder in every "section"
 function createRelCms(directory){
   var dest = directory.replace("/content/", "/static/admin/").replace("\\content\\", "\\static\\admin\\");
+
   var folder = directory.slice(directory.indexOf("content")).replace(/\\/g,"/");
+  var folderSection = "./" + directory.slice(directory.indexOf("content")).replace(/\\/g,"/");;
+
   if(fs.existsSync(dest)){
     deleteFolderRecursive(dest);
   }
   fs.mkdirSync(dest);
   fs.mkdirSync(dest + "/cms");
   fs.copyFileSync(cmsDir + "index.html", dest + "/cms/index.html");
-  fs.writeFileSync(dest + "/cms/config.yml", cmsConfig.replace(/{{folder}}/g, folder).replace(/{{folder_section}}/g, directory));  
+  fs.writeFileSync(dest + "/cms/config.yml", cmsConfig.replace(/{{folder}}/g, folder).replace(/{{folder_section}}/g, folderSection));  
 }
 
 //deletes folder if exists

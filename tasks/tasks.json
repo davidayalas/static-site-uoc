@@ -1,3 +1,4 @@
 {
-  "absfolder": "prova"
+  "route": "./content/",
+  "folder": "prova"
 }

@@ -2,7 +2,7 @@ var fs = require('fs');
 var path = require('path');
 
 var taskfile = "./tasks/tasks.json";
-var contentDir = "./content/";
+var cmsDir = "./tasks/cms/";
 
 var tasks = fs.readFileSync(taskfile).toString();
 
@@ -12,10 +12,13 @@ try{
   tasks = null;
 }
 
-console.log(tasks)
+console.log(tasks.route+tasks.folder)
 
 if(tasks){
-  if(!fs.existsSync(contentDir+tasks.absfolder)){
-      fs.mkdirSync(contentDir+tasks.absfolder);
-  }
+	if(!fs.existsSync(tasks.route+tasks.folder)){
+		fs.mkdirSync(tasks.route+tasks.folder);
+		fs.copyFileSync(cmsDir + "_index.md", tasks.route+tasks.folder + "/_index-ca.md");
+		fs.copyFileSync(cmsDir + "_index.md", tasks.route+tasks.folder + "/_index-es.md");
+		fs.copyFileSync(cmsDir + "_index.md", tasks.route+tasks.folder + "/_index-en.md");
+	}
 }
