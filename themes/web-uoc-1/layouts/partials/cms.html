@@ -5,26 +5,41 @@
 
       {{ $collection := (replace (replace .URL (print $filenameNoLang "/")  "") (print "/" .Lang "/") "") }}
 
+      {{ $addPageText := "Add page"}}
+      {{ $editPageText := "Edit page"}}
+      {{ $editSectionText := "Edit section"}}
+      {{ $addSubSectionText := "Add subsection"}}
+
+      {{ if eq .Lang "ca" }}
+        {{ $addPageText := "Afegeix una pàgina"}}
+        {{ $editPageText := "Edita aquesta pàgina"}}
+        {{ $editSectionText := "Edita aquesta secció"}}
+        {{ $addSubSectionText := "Afegeix una subsecció"}}
+      {{ end }}
+
       <div class="pull-left editpage">
         {{ if .IsPage }}
-          <a href="/admin/{{ $collection }}cms/#/collections/content/new" id="cms-editor-link-add" style="color: #fff; margin-right: .5em;">
-            <span class="glyphicon glyphicon-plus text-small" aria-hidden="true"></span> Afegeix una entrada
-          </a>
           <a href="/admin/{{ $collection }}cms/#/collections/content/entries/{{ $filename }}" id="cms-editor-link-edit" style="color: #fff; margin-right: .5em;">
-            <span class="glyphicon glyphicon-edit text-small" aria-hidden="true"></span>Edita aquesta entrada</span>
+            <span class="glyphicon glyphicon-edit text-small" aria-hidden="true"></span>{{ $editPageText }}
           </a>
         {{ end }}
 
         {{ if .IsSection }}
+          <a href="/admin/{{ $collection }}cms/#/collections/content/new" id="cms-editor-link-add" style="color: #fff; margin-right: .5em;">
+            <span class="glyphicon glyphicon-plus text-small" aria-hidden="true"></span>{{ $addPageText }}
+          </a>
           <a href="/admin/{{ $collection }}cms/#/collections/section/entries/{{ $filename }}" id="cms-editor-link-edit" style="color: #fff; margin-right: .5em;">
-            <span class="glyphicon glyphicon-edit text-small" aria-hidden="true"></span>Edita aquesta secció</span>
+            <span class="glyphicon glyphicon-edit text-small" aria-hidden="true"></span>{{ $editSectionText }}
+          </a>
+          <a href="/admin/{{ $collection }}cms/#/collections/config/entries/create" id="cms-editor-link-add" style="color: #fff; margin-right: .5em;">
+            <span class="glyphicon glyphicon-plus text-small" aria-hidden="true"></span>{{ $addSubSectionText }}
           </a>
         {{ end }}
 
         {{ if .IsHome }}
-          <!--a href="/admin/cms/#/collections/section/entries/{{ $filename }}" id="cms-editor-link-edit" style="color: #fff; margin-right: .5em;">
-            <span class="glyphicon glyphicon-edit text-small" aria-hidden="true"></span>Edita aquesta secció</span>
-          </a-->
+          <a href="/admin/cms/#/collections/config/entries/create" id="cms-editor-link-add" style="color: #fff; margin-right: .5em;">
+            <span class="glyphicon glyphicon-plus text-small" aria-hidden="true"></span>{{ $addSubSectionText }}
+          </a>
         {{ end }}
       </div>
     </div>

@@ -45,3 +45,13 @@ collections: # A list of collections the CMS should be able to edit
       - {label: "Date", name: "date", widget: "datetime"}
     editor:
       - preview: false
+
+  - label: "Tasques"
+    name: "config"
+    files:
+      - label: "Create sub section"
+        name: "create"
+        file: "tasks/tasks.json"
+        fields:
+          - {label: "Route", name: "route", widget: "hidden", default: "{{folder_section}}/"}
+          - {label: "Folder", name: "folder", widget: "string", required: true}

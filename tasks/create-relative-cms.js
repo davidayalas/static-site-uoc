@@ -15,7 +15,7 @@ function createRelCms(directory){
   fs.mkdirSync(dest);
   fs.mkdirSync(dest + "/cms");
   fs.copyFileSync(cmsDir + "index.html", dest + "/cms/index.html");
-  fs.writeFileSync(dest + "/cms/config.yml", cmsConfig.replace(/{{folder}}/g, folder));
+  fs.writeFileSync(dest + "/cms/config.yml", cmsConfig.replace(/{{folder}}/g, folder).replace(/{{folder_section}}/g, directory));  
 }
 
 //deletes folder if exists
