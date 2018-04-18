@@ -3,18 +3,19 @@ var path = require('path');
 var cmsConfig = null;
 
 var cmsDir = "./tasks/cms/";
+var cmsDestDir = "./static/admin/";
 
 // creates /admin folder in every "section"
 function createRelCms(directory){
-  var dest = directory.replace("/content/", "/static/").replace("\\content\\", "\\static\\");
+  var dest = directory.replace("/content/", "/static/admin/").replace("\\content\\", "\\static\\admin\\");
   var folder = directory.slice(directory.indexOf("content")).replace(/\\/g,"/");
   if(fs.existsSync(dest)){
     deleteFolderRecursive(dest);
   }
   fs.mkdirSync(dest);
-  fs.mkdirSync(dest + "/admin");
-  fs.copyFileSync(cmsDir + "index.html", dest + "/admin/index.html");
-  fs.writeFileSync(dest + "/admin/config.yml", cmsConfig.replace(/{{folder}}/g, folder));
+  fs.mkdirSync(dest + "/cms");
+  fs.copyFileSync(cmsDir + "index.html", dest + "/cms/index.html");
+  fs.writeFileSync(dest + "/cms/config.yml", cmsConfig.replace(/{{folder}}/g, folder));
 }
 
 //deletes folder if exists

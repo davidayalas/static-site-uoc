@@ -6,6 +6,7 @@
 {{ range $sections }}
 	{{ $section := index $path $level }}
 	{{ $aux := split .URL "/" }}
+
 	{{if eq $section (index $aux $level) }}
 		<li>
 			{{if ne .URL $dir }}<a href="{{.Site.Params.projectDir}}{{.URL}}">{{ end }}

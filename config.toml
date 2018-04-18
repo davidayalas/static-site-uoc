@@ -7,6 +7,16 @@ theme = "web-uoc-1"
 [languages]
 
   [languages.ca]
-    title = "Blog UOC - ca"
+    title = "Site UOC - ca"
     weight = 1
     languageName = "Català"
+
+  [languages.es]
+    title = "Site UOC - es"
+    weight = 2
+    languageName = "Castellano"
+
+  [languages.en]
+    title = "Site UOC - en"
+    weight = 3
+    languageName = "English"

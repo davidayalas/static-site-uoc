@@ -33,11 +33,12 @@ collections: # A list of collections the CMS should be able to edit
     folder: "{{folder}}"
     filter: {field: "contenttype", value: "section"}    
     create: true
-    slug: "_index.md"
+    slug: "_index.{{language}}"
     fields:
       - {label: "Esborrany", name: "draft", widget: "boolean", default: true, required: false}
       - {label: "Content Type", name: "contenttype", widget: "hidden", default: "section"}
       - {label: "Idioma", name: "language", widget: "select", options: ["ca", "es", "en"]}
+      - {label: "Ordre", name: "weight", widget: "number", default: 1}
       - {label: "Títol", name: "title", widget: "string", tagname: "h1"}
       - {label: "Descripció", name: "description", widget: "text", required: false}
     meta:
