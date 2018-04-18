@@ -15,17 +15,20 @@ try{
   tasks = null;
 }
 
-if(tasks && tasks.directory && tasks.folder){
-	if(!fs.existsSync(dir+tasks.directory+tasks.folder)){
-		console.log("Creating dir: " + dir+tasks.directory+tasks.folder)
+console.log(tasks)
 
+if(tasks && tasks.directory && tasks.folder){
+	var folder = dir+"content/"+tasks.directory+tasks.folder;
+	console.log(folder)
+	if(!fs.existsSync(folder)){
+		console.log("Creating dir: " + folder)
 		var files = [
-			dir+tasks.directory+tasks.folder + "/_index-ca.md",
-			dir+tasks.directory+tasks.folder + "/_index-es.md",
-			dir+tasks.directory+tasks.folder + "/_index-en.md"
+			folder + "/_index-ca.md",
+			folder + "/_index-es.md",
+			folder + "/_index-en.md"
 		];
 
-		fs.mkdirSync(dir + tasks.directory+tasks.folder);
+		fs.mkdirSync(folder);
 
 		files.map(function(file){
 			fs.copyFileSync(cmsDir + "_index.md", file);
@@ -44,6 +47,7 @@ if(tasks && tasks.directory && tasks.folder){
 		try{
 			//git.addRemote('netlify', remote)
 		}catch(e){}
+
 
 		git
 			.pull()
