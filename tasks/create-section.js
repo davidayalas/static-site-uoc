@@ -48,7 +48,7 @@ if(tasks && tasks.directory && tasks.folder){
 			.raw(
 				 ["config", "user.email", "netlify-hugo@netlify.com"]
 			)
-			//.pull(remote, "master")
+			.pull(remote, "master")
 			//.add(dir+"/*")
 			.add(folder+"/*")
 			.add(path.join(__dirname, "../", taskfile))
