@@ -1,0 +1,47 @@
+backend:
+  branch: master
+  name: git-gateway
+
+media_folder: "static/images/uploads" # Media files will be stored in the repo under static/images/uploads
+public_folder: "/images/uploads"
+#publish_mode: editorial_workflow
+
+collections: # A list of collections the CMS should be able to edit
+  - name: "content"
+    label: "Contingut"
+    folder: "content/section1/subsection1"
+    filter: {field: "contenttype", value: "content"}    
+    create: true
+    slug: "{{slug}}.{{language}}"
+    fields:
+      - {label: "Esborrany", name: "draft", widget: "boolean", default: true, required: false}
+      - {label: "Content Type", name: "contenttype", widget: "hidden", default: "content"}
+      - {label: "Idioma", name: "language", widget: "select", options: ["ca", "es", "en"]}
+      - {label: "Clau", name: "urlkey", widget: "string", required: true}
+      - {label: "Ordre", name: "weight", widget: "number", default: 1}
+      - {label: "Títol", name: "title", widget: "string", tagname: "h1"}
+      - {label: "Descripció", name: "description", widget: "text", required: false}
+      - {label: "Data", name: "date", widget: "datetime"}
+      - {label: "Contingut", name: "body", widget: "markdown"}
+    meta:
+      - {label: "Date", name: "date", widget: "datetime"}
+    editor:
+      - preview: false
+
+  - name: "section"
+    label: "Secció"
+    folder: "content/section1/subsection1"
+    filter: {field: "contenttype", value: "section"}    
+    create: true
+    slug: "_index.{{language}}"
+    fields:
+      - {label: "Esborrany", name: "draft", widget: "boolean", default: true, required: false}
+      - {label: "Content Type", name: "contenttype", widget: "hidden", default: "section"}
+      - {label: "Idioma", name: "language", widget: "select", options: ["ca", "es", "en"]}
+      - {label: "Ordre", name: "weight", widget: "number", default: 1}
+      - {label: "Títol", name: "title", widget: "string", tagname: "h1"}
+      - {label: "Descripció", name: "description", widget: "text", required: false}
+    meta:
+      - {label: "Date", name: "date", widget: "datetime"}
+    editor:
+      - preview: false
