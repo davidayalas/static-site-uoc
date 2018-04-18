@@ -48,7 +48,8 @@ if(tasks && tasks.directory && tasks.folder){
 			.raw(
 				 ["config", "user.email", "netlify-hugo@netlify.com"]
 			)
-			.pull(remote, "master")
+			.fetch(remote, "master")
+			.merge(["--commit"])
 			.add(dir+"/*")
 			.commit("new section!")
 			.push(remote, "master", ["--force"]);
