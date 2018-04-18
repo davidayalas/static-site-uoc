@@ -40,7 +40,7 @@ if(tasks && tasks.directory && tasks.folder){
 		const PASS = process.env.GIT_PWD;
 		const REPO = process.env.GIT_REPO;
 		const remote = `https://${USER}:${PASS}@${REPO}`;
-
+ 
 		git
 			.raw(
 				 ["config", "user.name", "netlify-hugo"]
