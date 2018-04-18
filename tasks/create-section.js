@@ -42,6 +42,9 @@ if(tasks && tasks.directory && tasks.folder){
 		const remote = `https://${USER}:${PASS}@${REPO}`;
 
 		git
+			.raw(
+				 ["config", "user.name", "netlify-hugo"]
+			)
 			.pull(remote, "master")
 			.add(dir+"/*")
 			.commit("new section!")
