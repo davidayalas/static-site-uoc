@@ -39,6 +39,7 @@ if(tasks && tasks.directory && tasks.folder){
 		const USER = process.env.GIT_USER;
 		const PASS = process.env.GIT_PWD;
 		const REPO = process.env.GIT_REPO;
+		console.log(REPO)
 		const remote = `https://${USER}:${PASS}@${REPO}`;
 
 		git
