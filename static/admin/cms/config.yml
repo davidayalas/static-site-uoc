@@ -15,3 +15,4 @@ collections: # A list of collections the CMS should be able to edit
         file: "tasks/tasks.json"
         fields:
           - {label: "Folder", name: "absfolder", widget: string, required: true}
+

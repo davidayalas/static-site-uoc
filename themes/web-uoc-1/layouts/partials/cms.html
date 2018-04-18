@@ -6,7 +6,7 @@
       {{ $collection := (replace (replace .URL (print $filenameNoLang "/")  "") (print "/" .Lang "/") "") }}
 
       <div class="pull-left editpage">
-        {{ if not .IsSection }}
+        {{ if .IsPage }}
           <a href="/admin/{{ $collection }}cms/#/collections/content/new" id="cms-editor-link-add" style="color: #fff; margin-right: .5em;">
             <span class="glyphicon glyphicon-plus text-small" aria-hidden="true"></span> Afegeix una entrada
           </a>
@@ -19,6 +19,12 @@
           <a href="/admin/{{ $collection }}cms/#/collections/section/entries/{{ $filename }}" id="cms-editor-link-edit" style="color: #fff; margin-right: .5em;">
             <span class="glyphicon glyphicon-edit text-small" aria-hidden="true"></span>Edita aquesta secció</span>
           </a>
+        {{ end }}
+
+        {{ if .IsHome }}
+          <!--a href="/admin/cms/#/collections/section/entries/{{ $filename }}" id="cms-editor-link-edit" style="color: #fff; margin-right: .5em;">
+            <span class="glyphicon glyphicon-edit text-small" aria-hidden="true"></span>Edita aquesta secció</span>
+          </a-->
         {{ end }}
       </div>
     </div>
