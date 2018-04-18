@@ -53,6 +53,10 @@ if(tasks && tasks.directory && tasks.folder){
 			.add(folder+"/*")
 			.add(path.join(__dirname, "../", taskfile))
 			.commit("new section!")
-			.push(remote, "master", "-f");
+			//.push(remote, "master", "--force");
+			.raw(
+				 ["push", remote, "master", "--force"]
+			)
+
 	}
 }
