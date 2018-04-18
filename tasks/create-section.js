@@ -12,7 +12,6 @@ try{
   tasks = null;
 }
 
-
 if(tasks && tasks.route && tasks.folder){
 	if(!fs.existsSync(tasks.route+tasks.folder)){
 		console.log("Creating dir: " + tasks.route+tasks.folder)
