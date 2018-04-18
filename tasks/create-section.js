@@ -41,6 +41,8 @@ if(tasks && tasks.directory && tasks.folder){
 		const REPO = process.env.GIT_REPO;
 		const remote = `https://${USER}:${PASS}@${REPO}`;
 
+		console.log(USER)
+
 		try{
 			git.addRemote('netlify', remote)
 		}catch(e){}
