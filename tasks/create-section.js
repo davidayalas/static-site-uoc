@@ -42,7 +42,7 @@ if(tasks && tasks.directory && tasks.folder){
 		const remote = `https://${USER}:${PASS}@${REPO}`;
 
 		git
-			.pull()
+			.pull(remote, "master")
 			.add(dir+"/*")
 			.commit("new section!")
 			.push(remote, "master", ["--force"]);
