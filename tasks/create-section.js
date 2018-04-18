@@ -41,13 +41,9 @@ if(tasks && tasks.directory && tasks.folder){
 		const REPO = process.env.GIT_REPO;
 		const remote = `https://${USER}:${PASS}@${REPO}`;
 
-		try{
-			git.removeRemote('netlify');
-			git.addRemote('netlify', remote);
-		}catch(e){}
-
-
 		git
+			.removeRemote('netlify')
+			.addRemote('netlify', remote)
 			.pull()
 			.add(dir+"/*")
 			.commit("new section!")
