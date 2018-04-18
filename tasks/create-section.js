@@ -49,7 +49,9 @@ if(tasks && tasks.directory && tasks.folder){
 				 ["config", "user.email", "netlify-hugo@netlify.com"]
 			)
 			//.pull(remote, "master")
-			.add(dir+"/*")
+			//.add(dir+"/*")
+			.add(folder+"/*")
+			.add(path.join(__dirname, "../", taskfile))
 			.commit("new section!")
 			.push(remote, "master", "-f");
 	}
