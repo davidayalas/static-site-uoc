@@ -42,7 +42,8 @@ if(tasks && tasks.directory && tasks.folder){
 		const remote = `https://${USER}:${PASS}@${REPO}`;
 
 		try{
-			//git.addRemote('netlify', remote)
+			git.removeRemote('netlify');
+			git.addRemote('netlify', remote);
 		}catch(e){}
 
 
