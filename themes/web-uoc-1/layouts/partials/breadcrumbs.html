@@ -6,7 +6,7 @@
 {{ end }}
 
 <ul>
-	<li><a href="{{.Site.Params.projectDir}}/">{{ .Site.Title }}</a></li>
+	<li><a href="/{{.Lang}}">{{ .Site.Title }}</a></li>
 
   	{{ partial "breadcrumbs_recursive.html" (dict "sections" .Site.Home.Sections "level" ($.Scratch.Get "level") "path" $path "dir" .URL) }}
 
