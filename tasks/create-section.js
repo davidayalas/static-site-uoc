@@ -51,7 +51,7 @@ if(tasks && tasks.directory && tasks.folder){
 			.pull(remote, "master")
 			.add(dir+"/*")
 			.commit("new section!")
-			.push(remote, "+master",);
+			.push(remote, "master", "-f");
 	}
 }
 
