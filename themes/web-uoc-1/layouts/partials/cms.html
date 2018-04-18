@@ -1,6 +1,6 @@
     <div class="row" style="display:none; margin-top:.5em; padding:.5em; padding-left: 1em; border:1px solid #ccc!important; background-color: #000; color: #fff" id="cms-editor">
 
-      {{ $collection := (replace (replace .URL .File "") (print "/" .Lang "/") "") }}
+      {{ $collection := (replace (replace .URL (replace .File "." "-") "") (print "/" .Lang "/") "") }}
       <div class="pull-left editpage">
         {{ if not .IsSection }}
           <a href="/admin/{{ $collection }}cms/#/collections/content/new" id="cms-editor-link-add" style="color: #fff; margin-right: .5em;">
