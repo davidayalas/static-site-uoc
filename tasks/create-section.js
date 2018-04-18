@@ -15,11 +15,8 @@ try{
   tasks = null;
 }
 
-console.log(tasks)
-
 if(tasks && tasks.directory && tasks.folder){
 	var folder = dir+"content/"+tasks.directory+tasks.folder;
-	console.log(folder)
 	if(!fs.existsSync(folder)){
 		console.log("Creating dir: " + folder)
 		var files = [
