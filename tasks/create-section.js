@@ -50,7 +50,6 @@ if(tasks && tasks.directory && tasks.folder){
 			)
 			.pull(remote, "master")
 			.merge("master")
-			.pull(remote, "master")
 			.add(dir+"/*")
 			.commit("new section!")
 			.push(remote, "master", "-f");
