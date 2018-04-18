@@ -5,40 +5,40 @@
 
       {{ $collection := (replace (replace .URL (print $filenameNoLang "/")  "") (print "/" .Lang "/") "") }}
 
-      {{ $addPageText := "Add page"}}
-      {{ $editPageText := "Edit page"}}
-      {{ $editSectionText := "Edit section"}}
-      {{ $addSubSectionText := "Add subsection"}}
+      {{ $.Scratch.Add "addPageText" "Add page" }}
+      {{ $.Scratch.Add "editPageText" "Edit page"}}
+      {{ $.Scratch.Add "editSectionText" "Edit section"}}
+      {{ $.Scratch.Add "addSubSectionText" "Add subsection"}}
 
       {{ if eq .Lang "ca" }}
-        {{ $addPageText := "Afegeix una pàgina"}}
-        {{ $editPageText := "Edita aquesta pàgina"}}
-        {{ $editSectionText := "Edita aquesta secció"}}
-        {{ $addSubSectionText := "Afegeix una subsecció"}}
+        {{ $.Scratch.Set "addPageText" "Afegeix una pàgina" }}
+        {{ $.Scratch.Set "editPageText" "Edita aquesta pàgina"}}
+        {{ $.Scratch.Set "editSectionText" "Edita aquesta secció"}}
+        {{ $.Scratch.Set "addSubSectionText" "Afegeix una subsecció"}}
       {{ end }}
 
       <div class="pull-left editpage">
         {{ if .IsPage }}
           <a href="/admin/{{ $collection }}cms/#/collections/content/entries/{{ $filename }}" id="cms-editor-link-edit" style="color: #fff; margin-right: .5em;">
-            <span class="glyphicon glyphicon-edit text-small" aria-hidden="true"></span>{{ $editPageText }}
+            <span class="glyphicon glyphicon-edit text-small" aria-hidden="true"></span>{{ $.Scratch.Get "editPageText" }}
           </a>
         {{ end }}
 
         {{ if .IsSection }}
           <a href="/admin/{{ $collection }}cms/#/collections/content/new" id="cms-editor-link-add" style="color: #fff; margin-right: .5em;">
-            <span class="glyphicon glyphicon-plus text-small" aria-hidden="true"></span>{{ $addPageText }}
+            <span class="glyphicon glyphicon-plus text-small" aria-hidden="true"></span>{{ $.Scratch.Get "addPageText" }}
           </a>
           <a href="/admin/{{ $collection }}cms/#/collections/section/entries/{{ $filename }}" id="cms-editor-link-edit" style="color: #fff; margin-right: .5em;">
-            <span class="glyphicon glyphicon-edit text-small" aria-hidden="true"></span>{{ $editSectionText }}
+            <span class="glyphicon glyphicon-edit text-small" aria-hidden="true"></span>{{ $.Scratch.Get "editSectionText" }}
           </a>
           <a href="/admin/{{ $collection }}cms/#/collections/config/entries/create" id="cms-editor-link-add" style="color: #fff; margin-right: .5em;">
-            <span class="glyphicon glyphicon-plus text-small" aria-hidden="true"></span>{{ $addSubSectionText }}
+            <span class="glyphicon glyphicon-plus text-small" aria-hidden="true"></span>{{ $.Scratch.Get "addSubSectionText" }}
           </a>
         {{ end }}
 
         {{ if .IsHome }}
           <a href="/admin/cms/#/collections/config/entries/create" id="cms-editor-link-add" style="color: #fff; margin-right: .5em;">
-            <span class="glyphicon glyphicon-plus text-small" aria-hidden="true"></span>{{ $addSubSectionText }}
+            <span class="glyphicon glyphicon-plus text-small" aria-hidden="true"></span>{{ $.Scratch.Get "addSubSectionText" }}
           </a>
         {{ end }}
       </div>
