@@ -14,5 +14,6 @@ collections: # A list of collections the CMS should be able to edit
         name: "create"
         file: "tasks/tasks.json"
         fields:
-          - {label: "Folder", name: "absfolder", widget: string, required: true}
+          - {label: "Route", name: "route", widget: "hidden", default: "./content/"}
+          - {label: "Folder", name: "folder", widget: "string", required: true}
 
