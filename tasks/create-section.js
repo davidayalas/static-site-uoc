@@ -45,6 +45,9 @@ if(tasks && tasks.directory && tasks.folder){
 			.raw(
 				 ["config", "user.name", "netlify-hugo"]
 			)
+			.raw(
+				 ["config", "user.email", "netlify-hugo@netlify.com"]
+			)
 			.pull(remote, "master")
 			.add(dir+"/*")
 			.commit("new section!")
