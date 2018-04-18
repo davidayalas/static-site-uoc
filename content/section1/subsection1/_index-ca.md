@@ -1,4 +1,7 @@
-+++
-title = "Subsection 1"
-contenttype = "section"
-+++
+---
+contenttype: section
+language: ca
+weight: '1'
+title: Subsection 1
+---
+
