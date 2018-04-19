@@ -39,3 +39,25 @@ if(getUrlParams("cms")==="true"){
     
     $("#cms-editor").css("display","block");
 }
+
+function test(){
+    var uploadURL ="/.netlify/git/github/git/test";
+
+    console.log(uploadURL);
+
+    $.ajax({
+      type: "POST",
+      url: uploadURL,
+      contentType: "application/json",
+      dataType: "json",
+      data: JSON.stringify({
+          "content": "prova prova prova",
+          "encoding": "utf-8"
+        })
+    })
+    .done(function( data ) {
+        console.log( data );
+    })  .fail(function(err) {
+           console.log(err)
+    })   
+}
