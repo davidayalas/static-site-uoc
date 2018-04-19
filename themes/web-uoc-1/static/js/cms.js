@@ -1,3 +1,18 @@
+//Netlify identity widget
+function login(){
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", (user) => {
+            //document.location.href = "/admin/";
+            document.location.href = "?cms=true";
+          });
+        }
+      });
+    }
+}
+login();
+
 //CMS management
 function getUrlParams( prop ) {
     var params = {};
@@ -39,7 +54,6 @@ if(getUrlParams("cms")==="true"){
 
 //Git management for new sections
 function gitPut(url, data){
-    netlifyIdentity.user.jwt().then();
     console.log(url)
     $.ajax({
       'type': 'PUT',
@@ -78,9 +92,17 @@ function createSection(lang){
         return;
     }
 
-    $.get("/admin/_index.md", function(data){
-        data = data.replace("{{title}}",newSection).replace("{{lang}}",lang);
-        gitPut(uploadURL + path + newSection + "/_index-" + lang + ".md", data);
-    });
+    var createSection = function(){
+        $.get("/admin/_index.md", function(data){
+            data = data.replace("{{title}}",newSection).replace("{{lang}}",lang);
+            gitPut(uploadURL + path + newSection + "/_index-" + lang + ".md", data);
+        });
+    }
 
+    if(!netlifyIdentity.user){
+        login(createSection);
+    }else{
+        netlifyIdentity.user.jwt().then();
+        createSection();
+    }
 }
