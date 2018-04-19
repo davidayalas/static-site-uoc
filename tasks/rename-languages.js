@@ -29,7 +29,7 @@ function languageFiles(file){
   }
 }
 
-//loop content folder
+//loops content folder
 fsloop(
   "./content", 
   null,

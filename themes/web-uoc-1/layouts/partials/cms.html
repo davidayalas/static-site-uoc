@@ -17,6 +17,13 @@
         {{ $.Scratch.Set "addSubSectionText" "Afegeix una subsecció"}}
       {{ end }}
 
+      {{ if eq .Lang "es" }}
+        {{ $.Scratch.Set "addPageText" "Añade una página" }}
+        {{ $.Scratch.Set "editPageText" "Edita esta página"}}
+        {{ $.Scratch.Set "editSectionText" "Edita esta sección"}}
+        {{ $.Scratch.Set "addSubSectionText" "Añade una subsección"}}
+      {{ end }}
+
       <div class="pull-left editpage">
         {{ if .IsPage }}
           <a href="/admin/{{ $collection }}#/collections/content/entries/{{ $filename }}" id="cms-editor-link-edit" style="color: #fff; margin-right: .5em;">

@@ -39,7 +39,7 @@ var deleteFolderRecursive = function(path) {
 };
 
 
-//loop content folder
+//loops content folder
 fsloop(
   "./content", 
   function(file){
