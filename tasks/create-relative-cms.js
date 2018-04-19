@@ -15,10 +15,10 @@ function createRelCms(directory){
   if(fs.existsSync(dest)){
     deleteFolderRecursive(dest);
   }
-  fs.mkdirSync(dest);
-  fs.mkdirSync(dest + "/cms");
-  fs.copyFileSync(cmsDir + "index.html", dest + "/cms/index.html");
-  fs.writeFileSync(dest + "/cms/config.yml", cmsConfig.replace(/{{folder}}/g, folder).replace(/{{folder_section}}/g, folderSection));  
+  //fs.mkdirSync(dest);
+  fs.mkdirSync(dest + "/");
+  fs.copyFileSync(cmsDir + "index.html", dest + "/index.html");
+  fs.writeFileSync(dest + "/config.yml", cmsConfig.replace(/{{folder}}/g, folder).replace(/{{folder_section}}/g, folderSection));  
 }
 
 //deletes folder if exists

@@ -19,16 +19,16 @@
 
       <div class="pull-left editpage">
         {{ if .IsPage }}
-          <a href="/admin/{{ $collection }}cms/#/collections/content/entries/{{ $filename }}" id="cms-editor-link-edit" style="color: #fff; margin-right: .5em;">
+          <a href="/admin/{{ $collection }}#/collections/content/entries/{{ $filename }}" id="cms-editor-link-edit" style="color: #fff; margin-right: .5em;">
             <span class="glyphicon glyphicon-edit text-small" aria-hidden="true"></span>{{ $.Scratch.Get "editPageText" }}
           </a>
         {{ end }}
 
         {{ if .IsSection }}
-          <a href="/admin/{{ $collection }}cms/#/collections/content/new" id="cms-editor-link-add" style="color: #fff; margin-right: .5em;">
+          <a href="/admin/{{ $collection }}#/collections/content/new" id="cms-editor-link-add" style="color: #fff; margin-right: .5em;">
             <span class="glyphicon glyphicon-plus text-small" aria-hidden="true"></span>{{ $.Scratch.Get "addPageText" }}
           </a>
-          <a href="/admin/{{ $collection }}cms/#/collections/section/entries/{{ $filename }}" id="cms-editor-link-edit" style="color: #fff; margin-right: .5em;">
+          <a href="/admin/{{ $collection }}#/collections/section/entries/{{ $filename }}" id="cms-editor-link-edit" style="color: #fff; margin-right: .5em;">
             <span class="glyphicon glyphicon-edit text-small" aria-hidden="true"></span>{{ $.Scratch.Get "editSectionText" }}
           </a>
         {{ end }}
