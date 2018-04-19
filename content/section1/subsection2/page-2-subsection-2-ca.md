@@ -3,7 +3,7 @@ draft: false
 contenttype: content
 language: ca
 urlkey: page22
-weight: '-1'
+weight: '2'
 title: Page 2 subsection 2
 description: |-
   Hola
