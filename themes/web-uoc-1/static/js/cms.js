@@ -80,8 +80,8 @@ function createSection(lang){
     }
 
     $.get("/admin/cms/_index.md", function(data){
-        data = data.replace("{{title}}","títol");
-        gitPut(uploadURL + newSection + "/" + path + "_index-" + lang + ".md", data);
+        data = data.replace("{{title}}","títol").replace("{{lang}}",lang);
+        gitPut(uploadURL + path + newSection + "/_index-" + lang + ".md", data);
     });
 
 }
