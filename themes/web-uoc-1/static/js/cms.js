@@ -48,7 +48,9 @@ function test(){
     $.ajax({
       type: "POST",
       url: uploadURL,
-      contentType: "application/json",
+      headers : {
+        Authorization : 'Bearer ' + document.cookie.replace(/(?:(?:^|.*;\s*)nf_jwt\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+      },
       dataType: "json",
       data: JSON.stringify({
           "content": "prova prova prova",
