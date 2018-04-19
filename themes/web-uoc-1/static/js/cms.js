@@ -45,6 +45,8 @@ function test(){
 
     console.log(uploadURL);
 
+    document.cookie
+
     $.ajax({
       type: "POST",
       url: uploadURL,
