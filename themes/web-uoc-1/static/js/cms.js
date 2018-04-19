@@ -41,7 +41,6 @@ if(getUrlParams("cms")==="true"){
 }
 
 function gitPut(url, data){
-    console.log(url)
     $.ajax({
       'type': 'PUT',
       'url': url,
@@ -73,8 +72,6 @@ function createSection(lang){
         path = path.replace("/"+lang+"/", "");
     }
     var newSection = $("#sectionName").val();
-    console.log(uploadURL + newSection + "/" + path);
-    return
 
     $.get("/admin/cms/_index.md", function(data){
         data = data.replace("{{title}}","títol");
