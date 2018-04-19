@@ -5,10 +5,10 @@
 
       {{ $collection := (replace (replace .URL (print ($filenameNoLang | urlize)  "/")  "") (print "/" .Lang "/") "") }}
       
-      {{ $.Scratch.Add "addPageText" "Add page" }}
-      {{ $.Scratch.Add "editPageText" "Edit page"}}
-      {{ $.Scratch.Add "editSectionText" "Edit section"}}
-      {{ $.Scratch.Add "addSubSectionText" "Add subsection"}}
+      {{ $.Scratch.Set "addPageText" "Add page" }}
+      {{ $.Scratch.Set "editPageText" "Edit page"}}
+      {{ $.Scratch.Set "editSectionText" "Edit section"}}
+      {{ $.Scratch.Set "addSubSectionText" "Add subsection"}}
 
       {{ if eq .Lang "ca" }}
         {{ $.Scratch.Set "addPageText" "Afegeix una pàgina" }}

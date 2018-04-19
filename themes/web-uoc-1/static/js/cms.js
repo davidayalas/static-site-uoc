@@ -1,9 +1,4 @@
-/**
- * JavaScript Get URL Parameter
- * 
- * @param String prop The specific URL parameter you want to retreive the value for
- * @return String|Object If prop is provided a string value is returned, otherwise an object of all properties is returned
- */
+//CMS management
 function getUrlParams( prop ) {
     var params = {};
     var search = decodeURIComponent( window.location.href.slice( window.location.href.indexOf( '?' ) + 1 ) );
@@ -38,8 +33,11 @@ if(getUrlParams("cms")==="true"){
     })
     
     $("#cms-editor").css("display","block");
+    $(".cmsPreview").css("display","block");
 }
 
+
+//Git management for new sections
 function gitPut(url, data){
     console.log(url)
     $.ajax({
