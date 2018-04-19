@@ -44,7 +44,7 @@ function test(){
     var uploadURL ="/.netlify/git/github/contents/content/test";
 
     $.ajax({
-      type: "POST",
+      type: "PUT",
       url: uploadURL,
       headers : {
         Authorization : 'Bearer ' + netlifyIdentity.currentUser().token.access_token,
