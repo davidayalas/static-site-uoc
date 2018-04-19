@@ -55,10 +55,14 @@ function gitPut(url, data){
         })
     })
     .done(function( data ) {
-        console.log( data );
+        alert("OK!")
+        console.log(data);
+        $("#addSectionBlock").css("display", "none");
     })  
     .fail(function(err) {
-           console.log(err)
+        alert("exists!!")
+        $("#addSectionBlock").css("display", "none");
+        console.log(err)
     })   
 }
 
@@ -68,7 +72,9 @@ function createSection(lang){
     if(lang && path){
         path = path.replace("/"+lang+"/", "");
     }
-    console.log(uploadURL + path);
+    var newSection = $("#sectionName").val();
+    console.log(uploadURL + newSection + "/" + path);
+    return
 
     $.get("/admin/cms/_index.md", function(data){
         data = data.replace("{{title}}","títol");
