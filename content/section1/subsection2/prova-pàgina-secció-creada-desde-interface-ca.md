@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 contenttype: content
 language: ca
 urlkey: page1
