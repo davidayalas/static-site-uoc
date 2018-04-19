@@ -1,6 +1,6 @@
 //Netlify identity widget
 function login(){
-    if (window.netlifyIdentity) {
+    if(window.netlifyIdentity){
       window.netlifyIdentity.on("init", user => {
         if (!user) {
           window.netlifyIdentity.on("login", (user) => {
@@ -92,7 +92,7 @@ function createSection(lang){
         return;
     }
 
-    var createSection = function(){
+    var create = function(){
         $.get("/admin/_index.md", function(data){
             data = data.replace("{{title}}",newSection).replace("{{lang}}",lang);
             gitPut(uploadURL + path + newSection + "/_index-" + lang + ".md", data);
@@ -100,9 +100,9 @@ function createSection(lang){
     }
 
     if(!netlifyIdentity.user){
-        login(createSection);
+        login(create);
     }else{
         netlifyIdentity.user.jwt().then();
-        createSection();
+        create();
     }
 }
