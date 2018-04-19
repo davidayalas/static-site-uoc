@@ -18,7 +18,6 @@
 
     <!--{{ $len }}-->
 
-
     <!--Boxes-->
     <div class="boxes"><!-- style="display: none;">-->
         <div class="container">
@@ -27,12 +26,17 @@
             {{ range $.Site.Home.Sections }}
 
                 <!--Col-->
-                <div class="col-md-4">
-                    <a href="{{.Site.Params.projectDir}}{{.URL}}">
+                  {{ if eq .Params.visible false }}
+                    <div class="col-md-4 cmsPreview" style="display:none">
+                  {{ else }}
+                    <div class="col-md-4">
+                  {{ end }}
+
+                    <a href="{{.URL}}">
                         <div class="box model-3">
                             <div class="background-zone">
                                 {{ if index .Params "image" }}
-                                <img src="{{.Site.Params.projectDir}}{{index .Params "image" }}" class="" alt="">
+                                <img src="{{index .Params "image" }}" class="" alt="">
                                 {{ end }}
                                 <div class="background"></div>
                             </div>
