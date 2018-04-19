@@ -80,8 +80,10 @@ function gitPut(url, data){
 }
 
 function createSection(lang){
+
     var uploadURL ="/.netlify/git/github/contents/content/";
     var path = window.location.pathname || "";
+    var language = lang
     if(lang && path){
         path = path.replace("/"+lang+"/", "");
     }
@@ -92,17 +94,11 @@ function createSection(lang){
         return;
     }
 
-    var create = function(){
-        $.get("/admin/_index.md", function(data){
-            data = data.replace("{{title}}",newSection).replace("{{lang}}",lang);
-            gitPut(uploadURL + path + newSection + "/_index-" + lang + ".md", data);
-        });
-    }
+    netlifyIdentity.user.jwt().then();
 
-    if(!netlifyIdentity.user){
-        login(create);
-    }else{
-        netlifyIdentity.user.jwt().then();
-        create();
-    }
+    $.get("/admin/_index.md", function(data){
+        data = data.replace("{{title}}",newSection).replace("{{lang}}",lang);
+        gitPut(uploadURL + path + newSection + "/_index-" + lang + ".md", data);
+    });
+
 }
