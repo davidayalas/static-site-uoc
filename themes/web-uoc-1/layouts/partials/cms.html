@@ -3,8 +3,8 @@
       {{ $filename := (replace .File "." "-") }}
       {{ $filenameNoLang := (replace $filename (print "-" .Lang) "") }}
 
-      {{ $collection := (replace (replace .URL (print $filenameNoLang "/")  "") (print "/" .Lang "/") "") }}
-
+      {{ $collection := (replace (replace .URL (print ($filenameNoLang | urlize)  "/")  "") (print "/" .Lang "/") "") }}
+      
       {{ $.Scratch.Add "addPageText" "Add page" }}
       {{ $.Scratch.Add "editPageText" "Edit page"}}
       {{ $.Scratch.Add "editSectionText" "Edit section"}}
