@@ -31,18 +31,21 @@
           <a href="/admin/{{ $collection }}cms/#/collections/section/entries/{{ $filename }}" id="cms-editor-link-edit" style="color: #fff; margin-right: .5em;">
             <span class="glyphicon glyphicon-edit text-small" aria-hidden="true"></span>{{ $.Scratch.Get "editSectionText" }}
           </a>
-          <a href="/admin/{{ $collection }}cms/#/collections/config/entries/create" id="cms-editor-link-add" style="color: #fff; margin-right: .5em;">
-            <span class="glyphicon glyphicon-plus text-small" aria-hidden="true"></span>{{ $.Scratch.Get "addSubSectionText" }}
-          </a>
         {{ end }}
 
-        {{ if .IsHome }}
-          <a href="/admin/cms/#/collections/config/entries/create" id="cms-editor-link-add" style="color: #fff; margin-right: .5em;">
+        {{ if or .IsHome .IsSection}}
+          <a href="#" id="cms-editor-link-add" style="color: #fff; margin-right: .5em;" onclick="$('#addSectionBlock').css('display','inline'); return false;">
             <span class="glyphicon glyphicon-plus text-small" aria-hidden="true"></span>{{ $.Scratch.Get "addSubSectionText" }}
           </a>
+          <span style="display:none" id="addSectionBlock">
+            <input type="text" id="sectionName" />
+            <button type="button" class="btn btn-info" onclick="createSection('{{.Lang}}'); return false;">
+              <span class="glyphicon glyphicon-ok"></span> OK
+            </button>
+          </span>
         {{ end }}
 
-        <a href="#" onclick="test()">TEST</a>
+
       </div>
     </div>
 

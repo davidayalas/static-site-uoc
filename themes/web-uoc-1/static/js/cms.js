@@ -40,24 +40,39 @@ if(getUrlParams("cms")==="true"){
     $("#cms-editor").css("display","block");
 }
 
-function test(){
-    var uploadURL ="/.netlify/git/github/contents/content/test";
-
+function gitPut(url, data){
+    console.log(url)
     $.ajax({
-      type: "PUT",
-      url: uploadURL,
-      headers : {
-        Authorization : 'Bearer ' + netlifyIdentity.currentUser().token.access_token,
+      'type': 'PUT',
+      'url': url,
+      'headers' : {
+        'Authorization' : 'Bearer ' + netlifyIdentity.currentUser().token.access_token,
       },
-      dataType: "json",
-      data: JSON.stringify({
-          "message": "ajax test",
-          "content": window.btoa('Hello, world, Hello, world')
+      'dataType': 'json',
+      'data': JSON.stringify({
+          'message': 'new section',
+          'content': window.btoa(data)
         })
     })
     .done(function( data ) {
         console.log( data );
-    })  .fail(function(err) {
+    })  
+    .fail(function(err) {
            console.log(err)
     })   
+}
+
+function createSection(lang){
+    var uploadURL ="/.netlify/git/github/contents/content/";
+    var path = window.location.pathname || "";
+    if(lang && path){
+        path = path.replace("/"+lang+"/", "");
+    }
+    console.log(uploadURL + path);
+
+    $.get("/admin/cms/_index.md", function(data){
+        data = data.replace("{{title}}","títol");
+        gitPut(uploadURL + path + "/_index-" + lang + ".md", data);
+    });
+
 }
