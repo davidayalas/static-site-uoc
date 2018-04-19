@@ -39,6 +39,7 @@ if(getUrlParams("cms")==="true"){
 
 //Git management for new sections
 function gitPut(url, data){
+    netlifyIdentity.user.jwt().then();
     console.log(url)
     $.ajax({
       'type': 'PUT',
