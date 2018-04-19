@@ -52,7 +52,7 @@ function test(){
       dataType: "json",
       data: JSON.stringify({
           "message": "ajax test",
-          "content": window.btoa('Hello, world')
+          "content": window.btoa('Hello, world, Hello, world')
         })
     })
     .done(function( data ) {
