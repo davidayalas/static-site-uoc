@@ -43,13 +43,11 @@ if(getUrlParams("cms")==="true"){
 function test(){
     var uploadURL ="/.netlify/git/github/git/test";
 
-    console.log(window.netlifyIdentity);
-    return
     $.ajax({
       type: "POST",
       url: uploadURL,
       headers : {
-        Authorization : 'Bearer ' + document.cookie.replace(/(?:(?:^|.*;\s*)nf_jwt\s*\=\s*([^;]*).*$)|^.*$/, "$1")
+        Authorization : 'Bearer ' + netlifyIdentity.currentUser().token.access_token
       },
       dataType: "json",
       data: JSON.stringify({
