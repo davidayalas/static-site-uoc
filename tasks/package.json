@@ -1,9 +1,0 @@
-{
-  "name": "tasks-for-hugo-netlify-integration",
-  "version": "0.0.1",
-  "description": "",
-  "main": "app.js",
-  "dependencies": {
-    "simple-git": "1.92.0"
-  }
-}

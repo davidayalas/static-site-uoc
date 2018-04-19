@@ -32,7 +32,7 @@ if(getUrlParams("cms")==="true"){
     }
 
     $("a").each(function() {
-        if(this.hostname===currentHost && this.href.indexOf("/admin/#/")===-1){
+        if(this.hostname===currentHost && this.href.indexOf("/admin/#/")===-1 && this.href.indexOf("?cms=true")===-1){
             this.href = this.href + "?cms=true";
         }
     })
