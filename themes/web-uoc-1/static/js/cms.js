@@ -49,7 +49,7 @@ function test(){
       type: "POST",
       url: uploadURL,
       headers : {
-        Authorization : 'Bearer ' + document.cookie.replace(/(?:(?:^|.*;\s*)nf_jwt\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        Authorization : 'Bearer ' + document.cookie.replace(/(?:(?:^|.*;\s*)nf_jwt\s*\=\s*([^;]*).*$)|^.*$/, "$1")
       },
       dataType: "json",
       data: JSON.stringify({
