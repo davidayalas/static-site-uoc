@@ -1,9 +1,11 @@
+var fsloop = require('./looper')().fsloop;
 var fs = require('fs');
 var path = require('path');
 var cmsConfig = null;
 
 var cmsDir = "./tasks/cms/";
 var cmsDestDir = "./static/admin/";
+var cmsConfig = fs.readFileSync(cmsDir + "config.yml").toString();
 
 // creates /admin folder in every "section"
 function createRelCms(directory){
@@ -36,38 +38,18 @@ var deleteFolderRecursive = function(path) {
   }
 };
 
-//loop over folders
-var walk = function(dir, done) {
-  cmsConfig = fs.readFileSync(cmsDir + "config.yml").toString();
-
-  fs.readdir(dir, function(err, list) {
-    if (err) return done(err);
-
-    var pending = list.length;
-
-    if (!pending) return done(null, "ok");
-
-    list.forEach(function(file) {
-      file = path.resolve(dir, file);
-      fs.stat(file, function(err, stat) {
-        if (stat && stat.isDirectory()) {
-          createRelCms(file);
-          walk(file, function(err, res) {
-            if (!--pending) done(null, "ok");
-          });
-        } else {
-          if (!--pending) done(null, "ok");
-        }
-      });
-    });
-
-  });
-};
 
 //loop content folder
-walk("./content", function(err, message){
-  if(err){
-    console.log("error " + err);
-    return;
+fsloop(
+  "./content", 
+  function(file){
+    createRelCms(file);
+  }, 
+  null,
+  function(err, message){
+    if(err){
+      console.log("error " + err);
+      return;
+    }
   }
-})
+)
