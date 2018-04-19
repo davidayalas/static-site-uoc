@@ -94,7 +94,7 @@ function createSection(lang){
         return;
     }
 
-    netlifyIdentity.user.jwt().then();
+    netlifyIdentity.currentUser().jwt().then();
 
     $.get("/admin/_index.md", function(data){
         data = data.replace("{{title}}",newSection).replace("{{lang}}",lang);
