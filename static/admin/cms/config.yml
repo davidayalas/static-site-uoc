@@ -7,13 +7,20 @@ public_folder: "/images/uploads"
 #publish_mode: editorial_workflow
 
 collections: # A list of collections the CMS should be able to edit
-  - label: "Setup"
-    name: "config"
-    files:
-      - label: "Create section"
-        name: "create"
-        file: "tasks/tasks.json"
-        fields:
-          - {label: "Directory", name: "directory", widget: "string", default: "./content"}
-          - {label: "Folder", name: "folder", widget: "string", required: true}
-
+  - name: "section"
+    label: "Secció"
+    folder: "content"
+    filter: {field: "contenttype", value: "section"}    
+    create: true
+    slug: "_index.{{language}}"
+    fields:
+      - {label: "Esborrany", name: "draft", widget: "boolean", default: true, required: false}
+      - {label: "Content Type", name: "contenttype", widget: "hidden", default: "section"}
+      - {label: "Idioma", name: "language", widget: "select", options: ["ca", "es", "en"]}
+      - {label: "Ordre", name: "weight", widget: "number", default: 1}
+      - {label: "Títol", name: "title", widget: "string", tagname: "h1"}
+      - {label: "Descripció", name: "description", widget: "text", required: false}
+    meta:
+      - {label: "Date", name: "date", widget: "datetime"}
+    editor:
+      - preview: false
