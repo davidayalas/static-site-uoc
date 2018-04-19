@@ -41,6 +41,7 @@ if(getUrlParams("cms")==="true"){
 }
 
 function gitPut(url, data){
+    console.log(url)
     $.ajax({
       'type': 'PUT',
       'url': url,
@@ -73,9 +74,14 @@ function createSection(lang){
     }
     var newSection = $("#sectionName").val();
 
+    if(!newSection){
+        alert("No section!")
+        return;
+    }
+
     $.get("/admin/cms/_index.md", function(data){
         data = data.replace("{{title}}","títol");
-        gitPut(uploadURL + path + "/_index-" + lang + ".md", data);
+        gitPut(uploadURL + newSection + "/" + path + "/_index-" + lang + ".md", data);
     });
 
 }
