@@ -41,7 +41,7 @@ if(getUrlParams("cms")==="true"){
 }
 
 function test(){
-    var uploadURL ="/.netlify/git/github/git/test";
+    var uploadURL ="/.netlify/git/github/contents/test";
 
     $.ajax({
       type: "POST",
@@ -51,8 +51,8 @@ function test(){
       },
       dataType: "json",
       data: JSON.stringify({
-          "content": "prova prova prova",
-          "encoding": "utf-8"
+          "message": "ajax test",
+          "content": "prova prova prova"
         })
     })
     .done(function( data ) {
