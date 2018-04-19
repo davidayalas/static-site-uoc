@@ -35,7 +35,7 @@ collections: # A list of collections the CMS should be able to edit
     create: true
     slug: "_index.{{language}}"
     fields:
-      - {label: "Visible", name: "visible", widget: "boolean", default: true, required: false}
+      - {label: "Visible", name: "visible", widget: "boolean", default: false, required: false}
       - {label: "Content Type", name: "contenttype", widget: "hidden", default: "section"}
       - {label: "Language", name: "language", widget: "select", options: ["ca", "es", "en"]}
       - {label: "Order", name: "weight", widget: "number", default: 1}
