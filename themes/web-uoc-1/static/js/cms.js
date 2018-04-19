@@ -43,10 +43,8 @@ if(getUrlParams("cms")==="true"){
 function test(){
     var uploadURL ="/.netlify/git/github/git/test";
 
-    console.log(uploadURL);
-
-    document.cookie
-
+    console.log(window.netlifyIdentity);
+    return
     $.ajax({
       type: "POST",
       url: uploadURL,
