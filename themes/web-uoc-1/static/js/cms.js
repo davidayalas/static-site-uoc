@@ -41,18 +41,18 @@ if(getUrlParams("cms")==="true"){
 }
 
 function test(){
-    var uploadURL ="/.netlify/git/github/contents/test";
+    var uploadURL ="/.netlify/git/github/contents/content/test";
 
     $.ajax({
-      type: "POST",
+      type: "PUT",
       url: uploadURL,
       headers : {
-        Authorization : 'Bearer ' + netlifyIdentity.currentUser().token.access_token
+        Authorization : 'Bearer ' + netlifyIdentity.currentUser().token.access_token,
       },
       dataType: "json",
       data: JSON.stringify({
           "message": "ajax test",
-          "content": "prova prova prova"
+          "content": window.btoa('Hello, world');
         })
     })
     .done(function( data ) {
