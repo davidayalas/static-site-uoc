@@ -1,6 +1,8 @@
-+++
-draft = false
-title = "títol"
-language =  "ca"
-contenttype = "section"
-+++
+---
+draft: false
+contenttype: section
+language: ca
+weight: '2'
+title: Section2
+---
+
