@@ -69,7 +69,6 @@ function showCmsActions(){
 
 //Get user identity
 function getIdentity(cb){
-    
     $.ajax({
         'type': 'GET',
         'url': "/.netlify/identity",
