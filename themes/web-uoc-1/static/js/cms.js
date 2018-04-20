@@ -64,31 +64,31 @@ if(getUrlParams("cms")==="true"){
 function gitPut(url, data){
     console.log(url)
     $.ajax({
-      'type': 'PUT',
-      'url': url,
-      'headers' : {
+        'type': 'PUT',
+        'url': url,
+        'headers' : {
         'Authorization' : 'Bearer ' + netlifyIdentity.currentUser().token.access_token,
-      },
-      'dataType': 'json',
-      'data': JSON.stringify({
+        },
+        'dataType': 'json',
+        'data': JSON.stringify({
           'message': 'new section',
           'content': window.btoa(data)
-        })
-    }),
-    statusCode: {
-        422: function(xhr) {
-            alert('section exists');
+        }),
+        statusCode: {
+            422: function(xhr) {
+                alert('section exists');
+            },
+            401: function(xhr) {
+                alert('not logged');
+            }
         },
-        401: function(xhr) {
-            alert('not logged');
-        }
-    },
-    success: function (data, status) {
-        alert("section created!");
-    },
-    error: function (xhr, desc, err) {
-        alert("error: " + xhr.status);
-    } 
+        success: function (data, status) {
+            alert("section created!");
+        },
+        error: function (xhr, desc, err) {
+            alert("error: " + xhr.status);
+        } 
+    })
 }
 
 function createSection(lang){
