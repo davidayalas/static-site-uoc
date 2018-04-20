@@ -1,27 +1,18 @@
-function observe(){
-    var cms = document.getElementById('loginButton');
-    var config = { attributes: true, childList: true, subtree: true };
-    var observer = new MutationObserver(function() {
-        observer.disconnect();
-        showCmsActions();
-    });
-    observer.observe(cms, config);
-}
-observe();
-
 $(document).ready(function(){
 
     //Netlify identity widget
     if(window.netlifyIdentity){
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", (user) => {
-            //document.location.href = "/admin/";
-            document.location.href = "?cms=true";
-          });
-        }
-      });
+        window.netlifyIdentity.on("init", user => {
+            if (!user) {
+                window.netlifyIdentity.on("login", (user) => {
+                    //document.location.href = "/admin/";
+                    document.location.href = "?cms=true";
+                });
+            }
+        });
     }
+
+    getIdentity(cb)
 
     if(getUrlParams("cms")==="true"){
 
@@ -76,10 +67,34 @@ function showCmsActions(){
     }        
 }
 
+//Get user identity
+function getIdentity(cb){
+    
+    $.ajax({
+        'type': 'GET',
+        'url': "./netlify/identity",
+        'headers' : {
+        },
+        'dataType': 'json',
+        statusCode: {
+        },
+        success: function (data, status) {
+            console.log(data);
+        },
+        error: function (xhr, desc, err) {
+            console.log("error: " + xhr.status + " " + desc);
+        } 
+    })
+}
+
 
 //Git management for new sections
-function gitPut(url, data, token){
+function gitPut(path, data, token){
+    var gitEndpoint ="/.netlify/git/github/contents/content/";
+    var url = gitEndpoint + path;
+
     console.log(url)
+
     $.ajax({
         'type': 'PUT',
         'url': url,
@@ -110,7 +125,6 @@ function gitPut(url, data, token){
 
 function createSection(lang){
 
-    var uploadURL ="/.netlify/git/github/contents/content/";
     var path = window.location.pathname || "";
     var language = lang
     if(lang && path){
@@ -128,7 +142,7 @@ function createSection(lang){
 
     $.get("/admin/_index.md", function(data){
         data = data.replace("{{title}}",newSection).replace("{{lang}}",lang);
-        gitPut(uploadURL + path + newSection + "/_index-" + lang + ".md", data, token);
+        gitPut(path + newSection + "/_index-" + lang + ".md", data, token);
     });
 
 }
