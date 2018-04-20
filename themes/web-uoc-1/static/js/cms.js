@@ -47,9 +47,11 @@ if(getUrlParams("cms")==="true"){
         }
     })
 
-    if(netlifyIdentity.currentUser()){
+    if(netlifyIdentity.currentUser()!==null){
+        $(".cms-login").css("display", "none");
         $(".cms-actions").css("display", "block");
     }else{        
+        $(".cms-actions").css("display", "none");
         $(".cms-login").css("display", "block");
     }    
 
@@ -73,17 +75,20 @@ function gitPut(url, data){
           'content': window.btoa(data)
         })
     })
-    .done(function(data) {
-        alert("OK!")
-        console.log("STATUS: " + data.status);
-        $("#addSectionBlock").css("display", "none");
-    })  
-    .fail(function(err) {
-        alert("exists!!")
-        console.log("ERR STATUS:" + err.status)
-        $("#addSectionBlock").css("display", "none");
-        console.log(err)
-    })   
+    statusCode: {
+        422: function(xhr) {
+            alert('section exists');
+        },
+        401: function(xhr) {
+            alert('not logged');
+        }
+    },
+    success: function (data, status) {
+        alert("section created!");
+    },
+    error: function (xhr, desc, err) {
+        alert("error: " + xhr.status);
+    } 
 }
 
 function createSection(lang){
