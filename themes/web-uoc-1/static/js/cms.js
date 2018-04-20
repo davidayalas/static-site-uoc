@@ -6,6 +6,7 @@ function login(){
           window.netlifyIdentity.on("login", (user) => {
             //document.location.href = "/admin/";
             document.location.href = "?cms=true";
+            showCmsActions();
           });
         }
       });
@@ -56,8 +57,6 @@ if(getUrlParams("cms")==="true"){
             this.href = this.href + "?cms=true";
         }
     })
-
-    showCmsActions();
 
     $("#cms-editor").css("display","block");
     $(".cmsPreview").css("display","block");
