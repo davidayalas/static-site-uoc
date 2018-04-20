@@ -29,11 +29,11 @@ function getUrlParams( prop ) {
 
 function showCmsActions(){
     if(netlifyIdentity.currentUser()!==null){
-        //$(".cms-login").css("display", "none");
+        $("*[data-netlify-identity-button]").css("display", "none");
         $(".cms-actions").css("display", "block");
     }else{        
         $(".cms-actions").css("display", "none");
-        //$(".cms-login").css("display", "block");
+        $("*[data-netlify-identity-button]").css("display", "block");
     }        
 }
 
