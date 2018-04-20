@@ -12,6 +12,20 @@ $(document).ready(function(){
         });
     }
 
+    //CMS management
+    var getUrlParams = function(prop) {
+        var params = {};
+        var search = decodeURIComponent( window.location.href.slice( window.location.href.indexOf( '?' ) + 1 ) );
+        var definitions = search.split( '&' );
+
+        definitions.forEach( function( val, key ) {
+            var parts = val.split( '=', 2 );
+            params[ parts[ 0 ] ] = parts[ 1 ];
+        } );
+
+        return ( prop && prop in params ) ? params[ prop ] : params;
+    }
+
     if(getUrlParams("cms")==="true"){
 
         console.log("loading cms objects...");
@@ -40,20 +54,6 @@ $(document).ready(function(){
 
 
 })
-
-//CMS management
-function getUrlParams( prop ) {
-    var params = {};
-    var search = decodeURIComponent( window.location.href.slice( window.location.href.indexOf( '?' ) + 1 ) );
-    var definitions = search.split( '&' );
-
-    definitions.forEach( function( val, key ) {
-        var parts = val.split( '=', 2 );
-        params[ parts[ 0 ] ] = parts[ 1 ];
-    } );
-
-    return ( prop && prop in params ) ? params[ prop ] : params;
-}
 
 //Git management for new sections
 function gitPut(path, data, token){
@@ -91,12 +91,14 @@ function gitPut(path, data, token){
 }
 
 function createSection(lang){
+
     if($(".netlify-identity-button").first().text().toLowerCase()==="log in"){
         alert("not logged");
         return;
     }
+
     var path = window.location.pathname || "";
-    var language = lang
+
     if(lang && path){
         path = path.replace("/"+lang+"/", "");
     }
