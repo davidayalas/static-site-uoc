@@ -24,39 +24,36 @@
         {{ $.Scratch.Set "addSubSectionText" "Añade una subsección"}}
       {{ end }}
 
-      <div class="pull-left editpage" id="cmsActions">
+      <div class="pull-left editpage">
 
-        <span id="loginButton" data-netlify-identity-button class="cms-login" style="display: none"></span>
+        <span data-netlify-identity-button> </span>
 
-        <span class="cms-actions" style="display: none">
-            {{ if .IsPage }}
-              <a href="/admin/{{ $collection }}#/collections/content/entries/{{ $filename }}" id="cms-editor-link-edit" style="color: #fff; margin-right: .5em;">
-                <span class="glyphicon glyphicon-edit text-small" aria-hidden="true"></span>{{ $.Scratch.Get "editPageText" }}
-              </a>
-            {{ end }}
+        {{ if .IsPage }}
+          <a href="/admin/{{ $collection }}#/collections/content/entries/{{ $filename }}" id="cms-editor-link-edit" style="color: #fff; margin-right: .5em;">
+            <span class="glyphicon glyphicon-edit text-small" aria-hidden="true"></span>{{ $.Scratch.Get "editPageText" }}
+          </a>
+        {{ end }}
 
-            {{ if .IsSection }}
-              <a href="/admin/{{ $collection }}#/collections/content/new" id="cms-editor-link-add" style="color: #fff; margin-right: .5em;">
-                <span class="glyphicon glyphicon-plus text-small" aria-hidden="true"></span>{{ $.Scratch.Get "addPageText" }}
-              </a>
-              <a href="/admin/{{ $collection }}#/collections/section/entries/{{ $filename }}" id="cms-editor-link-edit" style="color: #fff; margin-right: .5em;">
-                <span class="glyphicon glyphicon-edit text-small" aria-hidden="true"></span>{{ $.Scratch.Get "editSectionText" }}
-              </a>
-            {{ end }}
+        {{ if .IsSection }}
+          <a href="/admin/{{ $collection }}#/collections/content/new" id="cms-editor-link-add" style="color: #fff; margin-right: .5em;">
+            <span class="glyphicon glyphicon-plus text-small" aria-hidden="true"></span>{{ $.Scratch.Get "addPageText" }}
+          </a>
+          <a href="/admin/{{ $collection }}#/collections/section/entries/{{ $filename }}" id="cms-editor-link-edit" style="color: #fff; margin-right: .5em;">
+            <span class="glyphicon glyphicon-edit text-small" aria-hidden="true"></span>{{ $.Scratch.Get "editSectionText" }}
+          </a>
+        {{ end }}
 
-            {{ if or .IsHome .IsSection}}
-              <a href="#" id="cms-editor-link-add" style="color: #fff; margin-right: .5em;" onclick="$('#addSectionBlock').css('display','inline'); return false;">
-                <span class="glyphicon glyphicon-plus text-small" aria-hidden="true"></span>{{ $.Scratch.Get "addSubSectionText" }}
-              </a>
-              <span style="display:none" id="addSectionBlock">
-                <input type="text" id="sectionName" style="color: #000;" />
-                <button type="button" class="btn btn-info" onclick="createSection('{{.Lang}}'); return false;">
-                  <span class="glyphicon glyphicon-ok"></span> OK
-                </button>
-              </span>
-            {{ end }}
-        </span>
-      </div>
+        {{ if or .IsHome .IsSection}}
+          <a href="#" id="cms-editor-link-add" style="color: #fff; margin-right: .5em; margin-left: .5em;" onclick="$('#addSectionBlock').css('display','inline'); return false;">
+            <span class="glyphicon glyphicon-plus text-small" aria-hidden="true"></span>{{ $.Scratch.Get "addSubSectionText" }}
+          </a>
+          <span style="display:none" id="addSectionBlock">
+            <input type="text" id="sectionName" style="color: #000;" />
+            <button type="button" class="btn btn-info" onclick="createSection('{{.Lang}}'); return false;">
+              <span class="glyphicon glyphicon-ok"></span> OK
+            </button>
+          </span>
+        {{ end }}
     </div>
 
     <script src="/js/cms.js"></script>

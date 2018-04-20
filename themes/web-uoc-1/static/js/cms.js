@@ -12,11 +12,10 @@ $(document).ready(function(){
         });
     }
 
-    getIdentity()
-
     if(getUrlParams("cms")==="true"){
 
         console.log("loading cms objects...");
+
         var currentHost = window.location.host;
         var path = window.location.pathname;
         path = path.split("/").filter(function(value){
@@ -34,8 +33,6 @@ $(document).ready(function(){
                 this.href = this.href + "?cms=true";
             }
         })
-
-        showCmsActions();
 
         $("#cms-editor").css("display","block");
         $(".cmsPreview").css("display","block");
@@ -57,35 +54,6 @@ function getUrlParams( prop ) {
 
     return ( prop && prop in params ) ? params[ prop ] : params;
 }
-
-function showCmsActions(){
-    $("*[data-netlify-identity-button]").css("display", "block");
-    if(netlifyIdentity.currentUser()!==null){
-        $(".cms-actions").css("display", "block");
-    }else{        
-        $(".cms-actions").css("display", "none");
-    }        
-}
-
-//Get user identity
-function getIdentity(cb){
-    $.ajax({
-        'type': 'GET',
-        'url': "/.netlify/identity",
-        'headers' : {
-        },
-        'dataType': 'json',
-        statusCode: {
-        },
-        success: function (data, status) {
-            console.log(data);
-        },
-        error: function (xhr, desc, err) {
-            console.log("error: " + xhr.status + " " + desc);
-        } 
-    })
-}
-
 
 //Git management for new sections
 function gitPut(path, data, token){
@@ -123,7 +91,10 @@ function gitPut(path, data, token){
 }
 
 function createSection(lang){
-
+    if($(".netlify-identity-button").first().text().toLowerCase()==="log in"){
+        alert("not logged");
+        return;
+    }
     var path = window.location.pathname || "";
     var language = lang
     if(lang && path){
