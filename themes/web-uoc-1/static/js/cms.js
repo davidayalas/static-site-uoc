@@ -56,11 +56,14 @@ $(document).ready(function(){
 })
 
 //Git management for new sections
-function gitPut(path, data, token){
+function gitPut(files, token){
     var gitEndpoint ="/.netlify/git/github/contents/content/";
-    var url = gitEndpoint + path;
+    var file;
+    if(files.length){
+        file = files.shift();
+    }
 
-    console.log(url)
+    var url = gitEndpoint + file[0];
 
     $.ajax({
         'type': 'PUT',
@@ -71,7 +74,7 @@ function gitPut(path, data, token){
         'dataType': 'json',
         'data': JSON.stringify({
           'message': 'new section',
-          'content': window.btoa(data)
+          'content': window.btoa(file[1])
         }),
         statusCode: {
             422: function(xhr) {
@@ -82,10 +85,15 @@ function gitPut(path, data, token){
             }
         },
         success: function (data, status) {
-            alert("section created!");
+            if(files.length===0){
+                alert("sections created!");                
+            }else{
+                gitPut(files, token);
+            }
         },
         error: function (xhr, desc, err) {
             console.log("error: " + xhr.status + " " + desc);
+            gitPut(files, token);
         } 
     })
 }
@@ -94,8 +102,10 @@ function createSection(lang, langs){
 
     if(langs){
         langs = langs.split(",");
+    }else{
+        langs = [lang]
     }
-    
+
     if($(".netlify-identity-button").first().text().toLowerCase()==="log in"){
         alert("not logged");
         return;
@@ -118,11 +128,16 @@ function createSection(lang, langs){
 
     $.get("/admin/_index.md", function(data){
         if(langs.length){
+            var files = [];
             langs.map(function(v){
                 data = data.replace("{{title}}",newSection).replace("{{lang}}",v);
-                gitPut(path + newSection + "/_index-" + v + ".md", data, token);
+                files.push[
+                    path + newSection + "/_index-" + v + ".md",
+                    data
+                ];
             })
+            //gitPut(path + newSection + "/_index-" + v + ".md", data, token);
+            gitPut(files, token);
         }
     });
-
 }
