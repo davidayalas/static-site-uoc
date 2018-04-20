@@ -27,6 +27,16 @@ function getUrlParams( prop ) {
     return ( prop && prop in params ) ? params[ prop ] : params;
 }
 
+function showCmsActions(){
+    if(netlifyIdentity.currentUser()!==null){
+        //$(".cms-login").css("display", "none");
+        $(".cms-actions").css("display", "block");
+    }else{        
+        $(".cms-actions").css("display", "none");
+        //$(".cms-login").css("display", "block");
+    }        
+}
+
 if(getUrlParams("cms")==="true"){
 	console.log("loading cms objects...");
     var currentHost = window.location.host;
@@ -47,13 +57,7 @@ if(getUrlParams("cms")==="true"){
         }
     })
 
-    if(netlifyIdentity.currentUser()!==null){
-        $(".cms-login").css("display", "none");
-        $(".cms-actions").css("display", "block");
-    }else{        
-        $(".cms-actions").css("display", "none");
-        $(".cms-login").css("display", "block");
-    }    
+    showCmsActions();
 
     $("#cms-editor").css("display","block");
     $(".cmsPreview").css("display","block");
@@ -61,13 +65,13 @@ if(getUrlParams("cms")==="true"){
 
 
 //Git management for new sections
-function gitPut(url, data){
+function gitPut(url, data, token){
     console.log(url)
     $.ajax({
         'type': 'PUT',
         'url': url,
         'headers' : {
-        'Authorization' : 'Bearer ' + netlifyIdentity.currentUser().token.access_token,
+        'Authorization' : 'Bearer ' + token,
         },
         'dataType': 'json',
         'data': JSON.stringify({
@@ -76,17 +80,17 @@ function gitPut(url, data){
         }),
         statusCode: {
             422: function(xhr) {
-                alert('section exists');
+                alert('section exists!');
             },
             401: function(xhr) {
-                alert('not logged');
+                alert('not logged!');
             }
         },
         success: function (data, status) {
             alert("section created!");
         },
         error: function (xhr, desc, err) {
-            alert("error: " + xhr.status);
+            console.log("error: " + xhr.status + " " + desc);
         } 
     })
 }
@@ -107,10 +111,11 @@ function createSection(lang){
     }
 
     netlifyIdentity.currentUser().jwt().then();
+    var token = netlifyIdentity.currentUser().token.access_token;
 
     $.get("/admin/_index.md", function(data){
         data = data.replace("{{title}}",newSection).replace("{{lang}}",lang);
-        gitPut(uploadURL + path + newSection + "/_index-" + lang + ".md", data);
+        gitPut(uploadURL + path + newSection + "/_index-" + lang + ".md", data, token);
     });
 
 }
