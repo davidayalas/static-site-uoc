@@ -74,7 +74,7 @@ function gitPut(url, data){
           'message': 'new section',
           'content': window.btoa(data)
         })
-    })
+    }),
     statusCode: {
         422: function(xhr) {
             alert('section exists');
