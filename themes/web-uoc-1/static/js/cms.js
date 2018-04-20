@@ -131,10 +131,10 @@ function createSection(lang, langs){
             var files = [];
             langs.map(function(v){
                 data = data.replace("{{title}}",newSection).replace("{{lang}}",v);
-                files.push[
+                files.push([
                     path + newSection + "/_index-" + v + ".md",
                     data
-                ];
+                ]);
             })
             //gitPut(path + newSection + "/_index-" + v + ".md", data, token);
             gitPut(files, token);
