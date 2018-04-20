@@ -46,7 +46,13 @@ if(getUrlParams("cms")==="true"){
             this.href = this.href + "?cms=true";
         }
     })
-    
+
+    if(netlifyIdentity.currentUser()){
+        $(".cms-actions").css("display", "block");
+    }else{        
+        $(".cms-login").css("display", "block");
+    }    
+
     $("#cms-editor").css("display","block");
     $(".cmsPreview").css("display","block");
 }
@@ -67,13 +73,14 @@ function gitPut(url, data){
           'content': window.btoa(data)
         })
     })
-    .done(function( data ) {
+    .done(function(data) {
         alert("OK!")
-        console.log(data);
+        console.log("STATUS: " + data.status);
         $("#addSectionBlock").css("display", "none");
     })  
     .fail(function(err) {
         alert("exists!!")
+        console.log("ERR STATUS:" + err.status)
         $("#addSectionBlock").css("display", "none");
         console.log(err)
     })   
