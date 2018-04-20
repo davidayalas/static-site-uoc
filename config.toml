@@ -1,6 +1,6 @@
 title = "UOC Site Template"
 baseURL = "/"
-DefaultContentLanguage = "ca"
+DefaultContentLanguage = "en"
 defaultContentLanguageInSubdir = true
 theme = "web-uoc-1"
 

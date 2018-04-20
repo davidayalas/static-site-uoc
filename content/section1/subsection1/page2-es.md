@@ -1,9 +1,9 @@
 ---
 contenttype: content
-language: ca
+language: es
 urlkey: page2
 weight: '2'
-title: Page 2 Subsection 1
+title: Page 2 Subsection 1 - ES
 date: '2018-04-17T00:00:00+02:00'
 ---
 

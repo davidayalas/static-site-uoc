@@ -1,8 +1,8 @@
 ---
 visible: true
 contenttype: section
-language: ca
+language: es
 weight: '1'
-title: Section 1 - CA
+title: Section 1 - ES
 ---
 
