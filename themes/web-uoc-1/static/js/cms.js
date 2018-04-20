@@ -90,8 +90,12 @@ function gitPut(path, data, token){
     })
 }
 
-function createSection(lang){
+function createSection(lang, langs){
 
+    if(langs){
+        langs = langs.split(",");
+    }
+    
     if($(".netlify-identity-button").first().text().toLowerCase()==="log in"){
         alert("not logged");
         return;
@@ -113,8 +117,12 @@ function createSection(lang){
     var token = netlifyIdentity.currentUser().token.access_token;
 
     $.get("/admin/_index.md", function(data){
-        data = data.replace("{{title}}",newSection).replace("{{lang}}",lang);
-        gitPut(path + newSection + "/_index-" + lang + ".md", data, token);
+        if(langs.length){
+            langs.map(function(v){
+                data = data.replace("{{title}}",newSection).replace("{{lang}}",v);
+                gitPut(path + newSection + "/_index-" + v + ".md", data, token);
+            })
+        }
     });
 
 }

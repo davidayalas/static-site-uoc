@@ -2,8 +2,17 @@
       @media (max-width:768px){
         .cmsAction{display: block;}
       }
-
     </style>
+
+    {{ $.Scratch.Set "lang" ""}}
+    {{ $nlang := len $.Site.Home.AllTranslations }}
+    {{ range $index, $name := $.Site.Home.AllTranslations }}
+        {{ $.Scratch.Add "lang" .Lang }}
+        {{ if lt (add $index 1) $nlang }}
+          {{ $.Scratch.Add "lang" "," }}
+        {{ end }}
+    {{ end }}
+
     <div class="row" style="display:none; margin-top:.5em; padding:.5em; padding-left: 1em; border:1px solid #ccc!important; background-color: #000; color: #fff" id="cms-editor">
 
       {{ $filename := (replace .File "." "-") }}
@@ -55,7 +64,7 @@
           </a>
           <span style="display:none" id="addSectionBlock" class="cmsAction">
             <input type="text" id="sectionName" style="color: #000;" />
-            <button type="button" class="btn btn-info" onclick="createSection('{{.Lang}}'); return false;">
+            <button type="button" class="btn btn-info" onclick="createSection({{.Lang}}, {{ $.Scratch.Get "lang" }}); return false;">
               <span class="glyphicon glyphicon-ok"></span> OK
             </button>
           </span>
