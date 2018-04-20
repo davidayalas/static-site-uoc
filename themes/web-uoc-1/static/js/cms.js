@@ -6,7 +6,6 @@ $(document).ready(function(){
           window.netlifyIdentity.on("login", (user) => {
             //document.location.href = "/admin/";
             document.location.href = "?cms=true";
-            showCmsActions();
           });
         }
       });
@@ -37,6 +36,7 @@ function showCmsActions(){
 }
 
 if(getUrlParams("cms")==="true"){
+
 	console.log("loading cms objects...");
     var currentHost = window.location.host;
     var path = window.location.pathname;
@@ -55,6 +55,8 @@ if(getUrlParams("cms")==="true"){
             this.href = this.href + "?cms=true";
         }
     })
+
+    showCmsActions();
 
     $("#cms-editor").css("display","block");
     $(".cmsPreview").css("display","block");
