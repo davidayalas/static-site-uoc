@@ -12,7 +12,7 @@ $(document).ready(function(){
         });
     }
 
-    getIdentity(cb)
+    getIdentity()
 
     if(getUrlParams("cms")==="true"){
 
