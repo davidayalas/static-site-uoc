@@ -72,7 +72,7 @@ function getIdentity(cb){
     
     $.ajax({
         'type': 'GET',
-        'url': "./netlify/identity",
+        'url': "/.netlify/identity",
         'headers' : {
         },
         'dataType': 'json',
