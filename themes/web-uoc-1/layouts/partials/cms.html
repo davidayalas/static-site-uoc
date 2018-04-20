@@ -24,9 +24,9 @@
         {{ $.Scratch.Set "addSubSectionText" "Añade una subsección"}}
       {{ end }}
 
-      <div class="pull-left editpage">
+      <div class="pull-left editpage" id="cmsActions">
 
-        <span data-netlify-identity-button class="cms-login" style="display: none"></span>
+        <span id="loginButton" data-netlify-identity-button class="cms-login" style="display: none"></span>
 
         <span class="cms-actions" style="display: none">
             {{ if .IsPage }}

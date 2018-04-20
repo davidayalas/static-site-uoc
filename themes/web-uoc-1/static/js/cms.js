@@ -1,5 +1,17 @@
-//Netlify identity widget
+function observe(){
+    var cms = document.getElementById('loginButton');
+    var config = { attributes: true, childList: true, subtree: true };
+    var observer = new MutationObserver(function() {
+        observer.disconnect();
+        showCmsActions();
+    });
+    observer.observe(cms, config);
+}
+observe();
+
 $(document).ready(function(){
+
+    //Netlify identity widget
     if(window.netlifyIdentity){
       window.netlifyIdentity.on("init", user => {
         if (!user) {
@@ -10,6 +22,35 @@ $(document).ready(function(){
         }
       });
     }
+
+    if(getUrlParams("cms")==="true"){
+
+        console.log("loading cms objects...");
+        var currentHost = window.location.host;
+        var path = window.location.pathname;
+        path = path.split("/").filter(function(value){
+            if(value){
+                return value;
+            }
+        });
+        
+        if(currentHost.indexOf(":")>-1){
+            currentHost = currentHost.slice(0, currentHost.indexOf(":"));
+        }
+
+        $("a").each(function() {
+            if(this.hostname===currentHost && this.href.indexOf("/admin/#/")===-1 && this.href.indexOf("?cms=true")===-1){
+                this.href = this.href + "?cms=true";
+            }
+        })
+
+        showCmsActions();
+
+        $("#cms-editor").css("display","block");
+        $(".cmsPreview").css("display","block");
+    }
+
+
 })
 
 //CMS management
@@ -33,33 +74,6 @@ function showCmsActions(){
     }else{        
         $(".cms-actions").css("display", "none");
     }        
-}
-
-if(getUrlParams("cms")==="true"){
-
-	console.log("loading cms objects...");
-    var currentHost = window.location.host;
-    var path = window.location.pathname;
-    path = path.split("/").filter(function(value){
-        if(value){
-            return value;
-        }
-    });
-    
-    if(currentHost.indexOf(":")>-1){
-        currentHost = currentHost.slice(0, currentHost.indexOf(":"));
-    }
-
-    $("a").each(function() {
-        if(this.hostname===currentHost && this.href.indexOf("/admin/#/")===-1 && this.href.indexOf("?cms=true")===-1){
-            this.href = this.href + "?cms=true";
-        }
-    })
-
-    showCmsActions();
-
-    $("#cms-editor").css("display","block");
-    $(".cmsPreview").css("display","block");
 }
 
 
