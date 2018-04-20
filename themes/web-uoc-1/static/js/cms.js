@@ -28,12 +28,11 @@ function getUrlParams( prop ) {
 }
 
 function showCmsActions(){
+    $("*[data-netlify-identity-button]").css("display", "block");
     if(netlifyIdentity.currentUser()!==null){
-        $("*[data-netlify-identity-button]").css("display", "none");
         $(".cms-actions").css("display", "block");
     }else{        
         $(".cms-actions").css("display", "none");
-        $("*[data-netlify-identity-button]").css("display", "block");
     }        
 }
 
