@@ -1,5 +1,5 @@
 //Netlify identity widget
-function login(){
+$(document).ready(function(){
     if(window.netlifyIdentity){
       window.netlifyIdentity.on("init", user => {
         if (!user) {
@@ -11,8 +11,7 @@ function login(){
         }
       });
     }
-}
-login();
+})
 
 //CMS management
 function getUrlParams( prop ) {
