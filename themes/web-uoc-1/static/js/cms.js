@@ -86,7 +86,7 @@ function gitPut(files, token){
         },
         success: function (data, status) {
             if(files.length===0){
-                alert("sections created!");                
+                alert("section created!");                
             }else{
                 gitPut(files, token);
             }
