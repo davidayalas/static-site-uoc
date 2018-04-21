@@ -1,6 +1,8 @@
-+++
-visible = false
-title = "subsection1_1"
-language =  "ca"
-contenttype = "section"
-+++
+---
+visible: true
+contenttype: section
+language: es
+weight: '1'
+title: Subsección 1.1
+---
+
