@@ -10,7 +10,7 @@ public_folder: "/images/uploads"
 collections: # A list of collections the CMS should be able to edit
   - name: "content"
     label: "Content"
-    folder: "{{folder}}"
+    folder: "content/section1/subsection1"
     filter: {field: "contenttype", value: "content"}    
     create: true
     slug: "{{urlkey}}.{{language}}"

@@ -1,16 +1,32 @@
 $(document).ready(function(){
 
-    //Netlify identity widget
-    if(window.netlifyIdentity){
-        window.netlifyIdentity.on("init", user => {
-            if (!user) {
-                window.netlifyIdentity.on("login", (user) => {
-                    //document.location.href = "/admin/";
-                    document.location.href = "?cms=true";
+    //Gets config type to adapt cms in frontend
+    $.get("/admin/config.yml", function(congifyml){
+        if(!window.cms){
+            window.cms = {};
+        }
+        if(congifyml.indexOf("name: git-gateway")>-1){
+            window.cms.type = "gitgateway";
+
+            //Netlify identity widget
+            if(window.netlifyIdentity){
+                window.netlifyIdentity.on("init", user => {
+                    if (!user) {
+                        window.netlifyIdentity.on("login", (user) => {
+                            //document.location.href = "/admin/";
+                            document.location.href = "?cms=true";
+                        });
+                    }
                 });
             }
-        });
-    }
+        }else if(congifyml.indexOf("name: github")>-1){
+            window.cms.type = "github";
+            var repo = congifyml.slice(congifyml.indexOf("repo: ")+6);
+            repo = repo.slice(0, repo.indexOf(" "));
+            window.cms.repo = repo;
+            $("*[data-netlify-identity-button]").css("display","none");
+        }
+    });
 
     //CMS management
     var getUrlParams = function(prop) {
@@ -51,13 +67,16 @@ $(document).ready(function(){
         $("#cms-editor").css("display","block");
         $(".cmsPreview").css("display","block");
     }
-
-
 })
 
 //Git management for new sections
 function gitPut(files, token){
     var gitEndpoint ="/.netlify/git/github/contents/content/";
+
+    if(window.cms.type==="github"){
+        var gitEndpoint ="https://api.github.com/repos/"+window.cms.repo+"/contents/content/";
+    }
+
     var file;
     if(files.length){
         file = files.shift();
@@ -125,7 +144,7 @@ function createSection(lang, langs){
 
     netlifyIdentity.currentUser().jwt().then();
     var token = netlifyIdentity.currentUser().token.access_token;
-
+    
     $.get("/admin/_index.md", function(data){
         if(langs.length){
             var files = [];
