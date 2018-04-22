@@ -1,11 +1,13 @@
 backend:
   branch: master
+#  name: git_gateway
   name: github
   repo: davidayalas/static-site-uoc   # Path to your Github repository
   base_url: https://netlify-oauth.azurewebsites.net/ # Path to ext auth provider
 
 media_folder: "static/images/uploads" # Media files will be stored in the repo under static/images/uploads
 public_folder: "/images/uploads"
+#publish_mode: editorial_workflow
 
 collections: # A list of collections the CMS should be able to edit
   - name: "content"
@@ -24,6 +26,24 @@ collections: # A list of collections the CMS should be able to edit
       - {label: "Description", name: "description", widget: "text", required: false}
       - {label: "Date", name: "date", widget: "datetime"}
       - {label: "Content", name: "body", widget: "markdown"}
+    meta:
+      - {label: "Date", name: "date", widget: "datetime"}
+    editor:
+      - preview: false
+
+  - name: "section"
+    label: "Secció"
+    folder: "content/section1/subsection1"
+    filter: {field: "contenttype", value: "section"}    
+    create: true
+    slug: "_index.{{language}}"
+    fields:
+      - {label: "Visible", name: "visible", widget: "boolean", default: false, required: false}
+      - {label: "Content Type", name: "contenttype", widget: "hidden", default: "section"}
+      - {label: "Language", name: "language", widget: "select", options: ["ca", "es", "en"]}
+      - {label: "Order", name: "weight", widget: "number", default: 1}
+      - {label: "Title", name: "title", widget: "string", tagname: "h1"}
+      - {label: "Description", name: "description", widget: "text", required: false}
     meta:
       - {label: "Date", name: "date", widget: "datetime"}
     editor:

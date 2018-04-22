@@ -12,7 +12,7 @@ public_folder: "/images/uploads"
 collections: # A list of collections the CMS should be able to edit
   - name: "content"
     label: "Content"
-    folder: "content/section1"
+    folder: "content/section1/subsection1/subsection1_1"
     filter: {field: "contenttype", value: "content"}    
     create: true
     slug: "{{urlkey}}.{{language}}"
@@ -33,7 +33,7 @@ collections: # A list of collections the CMS should be able to edit
 
   - name: "section"
     label: "Secció"
-    folder: "content/section1"
+    folder: "content/section1/subsection1/subsection1_1"
     filter: {field: "contenttype", value: "section"}    
     create: true
     slug: "_index.{{language}}"
