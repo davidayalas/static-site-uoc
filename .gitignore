@@ -1,5 +1,8 @@
 node_modules
 public
+static/admin/*
+!static/admin/?index*
+!static/admin/config.yml
 hugo*
 git*
 *.lock*
