@@ -2,7 +2,10 @@
 <configuration>
     <system.webServer>
         <staticContent>
-               <mimeMap fileExtension=".yml" mimeType="application/x-yaml " />
-     </staticContent>
+                <mimeMap fileExtension=".yml" mimeType="application/x-yaml " />
+   			    <mimeMap fileExtension=".woff" mimeType="application/font-woff" />
+        		<mimeMap fileExtension=".woff2" mimeType="application/font-woff2" />
+	    		<mimeMap fileExtension=".ttf" mimeType="font/ttf" />
+        </staticContent>
     </system.webServer>
 </configuration>
