@@ -10,6 +10,8 @@
         		<mimeMap fileExtension=".woff2" mimeType="font/woff2" />
         	    <remove fileExtension=".ttf" />
 	    		<mimeMap fileExtension=".ttf" mimeType="font/ttf" />
+        	    <remove fileExtension=".md" />
+	    		<mimeMap fileExtension=".md" mimeType="text/plain" />
         </staticContent>
     </system.webServer>
 </configuration>
