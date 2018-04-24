@@ -30,8 +30,9 @@ $(document).ready(function(){
             repo = repo.slice(0, repo.indexOf("\n"));
             window.cms.base_url = configyml.slice(configyml.indexOf("base_url: ")+10);
             window.cms.base_url = window.cms.base_url.slice(0, window.cms.base_url.indexOf("\n"));
-
-            window.cms.repo = repo;
+            
+            window.cms.base_url = window.cms.base_url.replace("\r","");
+            window.cms.repo = repo.replace("\r","");;
 
             $("*[data-netlify-identity-button]").css("display","none"); //hides netlify identity login button
         }
