@@ -16,5 +16,7 @@ SetLocal DisableDelayedExpansion & d:\7zip\7za x hugo.zip
 REM Generate Hugo static site from source on GitHub
 :build
 popd
+call node tasks\rename-languages.js
+call node tasks\create-relative-cms.js
 call D:\home\site\deployments\tools\hugo\bin\hugo -d D:\home\site\wwwroot
 echo Hugo build finished successfully.
