@@ -2,10 +2,11 @@
 $(document).ready(function(){
 
     //Gets config type to adapt cms in frontend
-    $.get("/admin/config.yml", function(configyml){
+    $.get("/admin/config.yml?" + (+new Date()), function(configyml){
         if(!window.cms){
             window.cms = {};
         }
+
         //check if git gateway or github auth
         if(configyml.indexOf(" name: git-gateway")>-1){
             console.log("netlify identity - gitgateway auth mode");
