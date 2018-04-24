@@ -1,9 +1,9 @@
 backend:
-  name: github
-  repo: davidayalas/static-site-uoc
-  base_url: https://netlify-oauth.azurewebsites.net
-  #branch: master
-  #name: git-gateway
+  #name: github
+  #repo: davidayalas/static-site-uoc
+  #base_url: https://netlify-oauth.azurewebsites.net
+  branch: master
+  name: git_gateway
 
 media_folder: "static/images/uploads" # Media files will be stored in the repo under static/images/uploads
 public_folder: "/images/uploads"

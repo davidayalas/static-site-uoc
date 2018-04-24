@@ -43,6 +43,8 @@
 
         <span data-netlify-identity-button style="margin-right: .5em;"> </span>
 
+        <!--span github-auth-button style="margin-right: .5em;">Log in </span-->
+
         {{ if .IsPage }}
           <a href="/admin/{{ $collection }}#/collections/content/entries/{{ $filename }}" class="cmsAction" id="cms-editor-link-edit" style="color: #fff; margin-right: .5em;">
             <span class="glyphicon glyphicon-edit text-small" aria-hidden="true"></span>{{ $.Scratch.Get "editPageText" }}
