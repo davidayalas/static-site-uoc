@@ -2,13 +2,12 @@
 $(document).ready(function(){
 
     //Gets config type to adapt cms in frontend
-    $.get("/admin/config.yml", function(congifyml){
+    $.get("/admin/config.yml", function(configyml){
         if(!window.cms){
             window.cms = {};
         }
-
         //check if git gateway or github auth
-        if(congifyml.indexOf("name: git-gateway")>-1){
+        if(configyml.indexOf(" name: git-gateway")>-1){
             console.log("netlify identity - gitgateway auth mode");
             window.cms.type = "gitgateway";
 
@@ -23,12 +22,12 @@ $(document).ready(function(){
                     }
                 });
             }
-        }else if(congifyml.indexOf("name: github")>-1){
+        }else if(configyml.indexOf(" name: github")>-1){
             console.log("github auth mode");
             window.cms.type = "github";
-            var repo = congifyml.slice(congifyml.indexOf("repo: ")+6);
+            var repo = configyml.slice(configyml.indexOf("repo: ")+6);
             repo = repo.slice(0, repo.indexOf("\n"));
-            window.cms.base_url = congifyml.slice(congifyml.indexOf("base_url: ")+10);
+            window.cms.base_url = configyml.slice(configyml.indexOf("base_url: ")+10);
             window.cms.base_url = window.cms.base_url.slice(0, window.cms.base_url.indexOf("\n"));
 
             window.cms.repo = repo;
