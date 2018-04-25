@@ -197,7 +197,7 @@ function createSection(lang, langs){
         fnPush(token)
     }else if(window.cms.type==="github"){
         token = window.localStorage.getItem("netlify-cms-user") || {};
-        token = JSON.parse(window.localStorage.getItem("netlify-cms-user")).token || window.localStorage.getItem("token");
+        token = (window.localStorage.getItem("netlify-cms-user") && window.localStorage.getItem("netlify-cms-user").token ? JSON.parse(window.localStorage.getItem("netlify-cms-user")).token || null) || window.localStorage.getItem("token");
         if(!token){
             githubAuth(function(){
                 fnPush(window.localStorage.getItem("token"));
