@@ -25,13 +25,20 @@ $(document).ready(function(){
         }else if(configyml.indexOf(" name: github")>-1){
             console.log("github auth mode");
             window.cms.type = "github";
-            var repo = configyml.slice(configyml.indexOf("repo: ")+6);
-            repo = repo.slice(0, repo.indexOf("\n"));
-            window.cms.base_url = configyml.slice(configyml.indexOf("base_url: ")+10);
-            window.cms.base_url = window.cms.base_url.slice(0, window.cms.base_url.indexOf("\n"));
-            
-            window.cms.base_url = window.cms.base_url.replace("\r","");
-            window.cms.repo = repo.replace("\r","");;
+
+            var getConfigKey = function(data, key){
+                if(data.indexOf(key + ": ")===-1){
+                    console.log(key + " not set at CMS config.yml");
+                    return null;
+                }
+                var key = data.slice(data.indexOf(key + ": ")+(key + ": ").length);
+                key = key.slice(0, key.indexOf("\n"));
+                return key.replace("\r","");
+            }
+
+            window.cms.repo = getConfigKey(configyml, "repo");
+            window.cms.base_url = getConfigKey(configyml, "base_url");
+            window.cms.client_id = getConfigKey(configyml, "client_id");
 
             $("*[data-netlify-identity-button]").css("display","none"); //hides netlify identity login button
         }
@@ -67,7 +74,7 @@ $(document).ready(function(){
             stickyFooter: false,
             closeMethods: ['overlay', 'button', 'escape'],
             closeLabel: "Close",
-            cssClass: ['custom-class-1', 'custom-class-2'],
+            //cssClass: ['custom-class-1', 'custom-class-2'],
             onOpen: function() {
                 console.log('modal open');
             },
@@ -75,10 +82,7 @@ $(document).ready(function(){
                 console.log('modal closed');
             },
             beforeClose: function() {
-                // here's goes some logic
-                // e.g. save content before closing the modal
                 return true; // close the modal
-                return false; // nothing happens
             }
         });
     });
@@ -150,7 +154,8 @@ function createSection(lang, langs){
     }
 
     if(window.cms.type==="gitgateway" && $(".netlify-identity-button").first().text().toLowerCase()==="log in"){
-        alert("not logged");
+        window.cms.modal.setContent('<h1>You are not logged</h1>');
+        window.cms.modal.open();
         return;
     }
 
@@ -213,7 +218,7 @@ function createSection(lang, langs){
 function githubAuth(cb){
     if(!window.localStorage.getItem('token')){
         window.cms.authWindow = window.open(
-            "https://github.com/login/oauth/authorize?client_id=b135b68c2ba0bd0c422a",
+            "https://github.com/login/oauth/authorize?client_id=" + window.cms.client_id,
             'NetlifyCMS Authorization',
             'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, ' +
             ('width=600, height=600, top=200, left=200);')

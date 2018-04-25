@@ -3,6 +3,7 @@ backend:
   repo: davidayalas/static-site-uoc
   base_url: https://netlify-oauth.azurewebsites.net
   branch: master
+  client_id: b135b68c2ba0bd0c422a
   #name: git-gateway
 
 media_folder: "static/images/uploads" # Media files will be stored in the repo under static/images/uploads
