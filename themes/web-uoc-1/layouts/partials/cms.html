@@ -73,4 +73,26 @@
         {{ end }}
     </div>
 
-    <script src="/js/cms.js"></script>
+    <script>
+     //CMS related staff 
+     (function(w,o){
+          var url = w.location.href;
+          var cms=false;
+          try{url = new URL(url);cms=url.searchParams.get("cms")=='true'?true:false;}
+          catch(e){cms = url.indexOf("cms=true")>-1?true:false}
+
+          if(cms){
+            var r;
+            for(var i=2,z=arguments.length; i<z;i++){
+              if(arguments[i].indexOf(".js")>-1){
+                r=o.createElement('script');r.async=1;
+                r.src=arguments[i];
+              }else if(arguments[i].indexOf(".css")>-1){
+                r=o.createElement('link');r.rel="stylesheet";
+                r.href=arguments[i];
+              }
+              o.getElementsByTagName('head')[0].appendChild(r);
+            }
+          }
+      })(window,document,'/js/cms.js','/js/tingle.min.js','/css/tingle.min.css');
+    </script>

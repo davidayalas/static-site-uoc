@@ -9,7 +9,7 @@
 
 	{{if eq $section (index $aux $level) }}
 		<li>
-			{{if ne .URL $dir }}<a href="{{.Site.Params.projectDir}}{{.URL}}">{{ end }}
+			{{if ne .URL $dir }}<a href="{{.URL}}">{{ end }}
 			{{ .Title }}
 			{{if ne .URL $dir }}</a>{{ end }}
 			

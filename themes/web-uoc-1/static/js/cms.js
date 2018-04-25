@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
 
     //Gets config type to adapt cms in frontend
@@ -36,23 +35,6 @@ $(document).ready(function(){
 
             $("*[data-netlify-identity-button]").css("display","none"); //hides netlify identity login button
         }
-    });
-
-    //CMS management
-    var getUrlParams = function(prop) {
-        var params = {};
-        var search = decodeURIComponent( window.location.href.slice( window.location.href.indexOf( '?' ) + 1 ) );
-        var definitions = search.split( '&' );
-
-        definitions.forEach( function( val, key ) {
-            var parts = val.split( '=', 2 );
-            params[ parts[ 0 ] ] = parts[ 1 ];
-        } );
-
-        return ( prop && prop in params ) ? params[ prop ] : params;
-    }
-
-    if(getUrlParams("cms")==="true"){
 
         console.log("loading cms objects...");
 
@@ -77,7 +59,29 @@ $(document).ready(function(){
 
         $("#cms-editor").css("display","block");
         $(".cmsPreview").css("display","block");
-    }
+
+
+        //MODAL INFO WINDOW
+        window.cms.modal = new tingle.modal({
+            footer: true,
+            stickyFooter: false,
+            closeMethods: ['overlay', 'button', 'escape'],
+            closeLabel: "Close",
+            cssClass: ['custom-class-1', 'custom-class-2'],
+            onOpen: function() {
+                console.log('modal open');
+            },
+            onClose: function() {
+                console.log('modal closed');
+            },
+            beforeClose: function() {
+                // here's goes some logic
+                // e.g. save content before closing the modal
+                return true; // close the modal
+                return false; // nothing happens
+            }
+        });
+    });
 })
 
 //Git management for new sections
@@ -93,6 +97,9 @@ function gitPut(files, token){
         file = files.shift();
     }
 
+    if(!file){
+        return;
+    }
     var url = gitEndpoint + file[0];
 
     $.ajax({
@@ -108,15 +115,18 @@ function gitPut(files, token){
         }),
         statusCode: {
             422: function(xhr) {
-                alert('section exists!');
+                window.cms.modal.setContent('<h1>Section exists</h1>');
+                window.cms.modal.open();
             },
             401: function(xhr) {
-                alert('not logged!');
+                window.cms.modal.setContent('<h1>You are not logged</h1>');
+                window.cms.modal.open();
             }
         },
         success: function (data, status) {
             if(files.length===0){
-                alert("section created!");                
+                window.cms.modal.setContent('<h1>Section has been created... Wait until site is rebuild...</h1>');
+                window.cms.modal.open();
             }else{
                 gitPut(files, token);
             }
@@ -130,12 +140,14 @@ function gitPut(files, token){
 
 function createSection(lang, langs){
 
+    window.cms.modal.setContent('<button class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span></button>');
+    window.cms.modal.open();
+
     if(langs){
         langs = langs.split(",");
     }else{
         langs = [lang]
     }
-
 
     if(window.cms.type==="gitgateway" && $(".netlify-identity-button").first().text().toLowerCase()==="log in"){
         alert("not logged");
@@ -148,9 +160,9 @@ function createSection(lang, langs){
         path = path.replace("/"+lang+"/", "");
     }
     var newSection = $("#sectionName").val();
-
     if(!newSection){
-        alert("No section!")
+        window.cms.modal.setContent('<h1>Inform section name</h1>');
+        window.cms.modal.open();
         return;
     }
 
@@ -179,10 +191,11 @@ function createSection(lang, langs){
         token = netlifyIdentity.currentUser().token.access_token;
         fnPush(token)
     }else if(window.cms.type==="github"){
-        token = sessionStorage.getItem("token");
+        token = window.localStorage.getItem("netlify-cms-user") || {};
+        token = JSON.parse(window.localStorage.getItem("netlify-cms-user")).token || window.localStorage.getItem("token");
         if(!token){
             githubAuth(function(){
-                fnPush(sessionStorage.getItem("token"))
+                fnPush(window.localStorage.getItem("token"));
             });
         }else{
             fnPush(token)
@@ -191,12 +204,14 @@ function createSection(lang, langs){
     
 }
 
-/******************
-   Git auth flow
+/**********************************************************************************************************************
+   
+   Git Auth Flow
    More info: https://github.com/netlify/netlify-cms/blob/190f9c261380b07b1d9800ac538f31a3fc04973c/src/lib/netlify-auth.js
-*******************/
+
+***********************************************************************************************************************/
 function githubAuth(cb){
-    if(!sessionStorage.getItem('token')){
+    if(!window.localStorage.getItem('token')){
         window.cms.authWindow = window.open(
             "https://github.com/login/oauth/authorize?client_id=b135b68c2ba0bd0c422a",
             'NetlifyCMS Authorization',
@@ -205,7 +220,7 @@ function githubAuth(cb){
         );                    
         window.cms.authWindow.focus();                
     }else{
-        console.log(sessionStorage.getItem('token'))
+        //console.log(window.localStorage.getItem('token'))
     }
     window.addEventListener('message', access(cb), false);    
 }
@@ -217,8 +232,7 @@ function authorization(cb){
         if (e.data.indexOf('authorization:github:success:') === 0) {
             data = JSON.parse(e.data.match(new RegExp('^authorization:github:success:(.+)$'))[1]);
             window.removeEventListener('message', fnAuth, false);
-            sessionStorage.setItem('token', data.token);
-            console.log(data.token);
+            window.localStorage.setItem('token', data.token);
             window.cms.authWindow.close();
             cb();
         }

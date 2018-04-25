@@ -1,5 +1,5 @@
 {{ $path := split .URL "/" }}
-{{ $.Scratch.Add "level" 1 }}
+{{ $.Scratch.Set "level" 1 }}
 
 {{ if .Site.IsMultiLingual }} 
 	{{ $.Scratch.Add "level" 1 }}
