@@ -1,6 +1,6 @@
-+++
-visible = false
-title = "prova"
-language =  "ca"
-contenttype = "section"
-+++
+---
+language: ca
+weight: '2'
+title: Secció 2
+---
+
