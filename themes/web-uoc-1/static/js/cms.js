@@ -127,7 +127,7 @@ function gitPut(files, token){
         },
         success: function (data, status) {
             if(files.length===0){
-                window.cms.modal.setContent('<h1>Section has been created... Wait until site is rebuild...</h1>');
+                window.cms.modal.setContent('<h1>Section has been created... Wait until site built...</h1>');
                 window.cms.modal.open();
             }else{
                 gitPut(files, token);
