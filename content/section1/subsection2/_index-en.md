@@ -1,5 +1,5 @@
 ---
-visible: false
+visible: true
 contenttype: section
 language: en
 weight: '2'
