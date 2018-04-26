@@ -1,5 +1,14 @@
-$(document).ready(function(){
+var getConfigKey = function(data, key){
+    var re = new RegExp("^[^#]\\s*[^#]" + key + "\\s*:\\s*\\b(.*)\\b","igm");
+    var matches = re.exec(data);
+    if(!matches){
+        console.log(key + " not set");
+        return null;
+    }
+    return matches[1];
+}
 
+$(document).ready(function(){
     //Gets config type to adapt cms in frontend
     $.get("/admin/config.yml?" + (+new Date()), function(configyml){
         if(!window.cms){
@@ -7,7 +16,7 @@ $(document).ready(function(){
         }
 
         //check if git gateway or github auth
-        if(configyml.indexOf(" name: git-gateway")>-1){
+        if(getConfigKey(configyml, "name")==="git-gateway"){
             console.log("netlify identity - gitgateway auth mode");
             window.cms.type = "gitgateway";
 
@@ -22,20 +31,9 @@ $(document).ready(function(){
                     }
                 });
             }
-        }else if(configyml.indexOf(" name: github")>-1){
+        }else if(getConfigKey(configyml, "name")==="github"){
             console.log("github auth mode");
             window.cms.type = "github";
-
-            var getConfigKey = function(data, key){
-                if(data.indexOf(key + ": ")===-1){
-                    console.log(key + " not set at CMS config.yml");
-                    return null;
-                }
-                var key = data.slice(data.indexOf(key + ": ")+(key + ": ").length);
-                key = key.slice(0, key.indexOf("\n"));
-                return key.replace("\r","");
-            }
-
             window.cms.repo = getConfigKey(configyml, "repo");
             window.cms.base_url = getConfigKey(configyml, "base_url");
             window.cms.client_id = getConfigKey(configyml, "client_id");
