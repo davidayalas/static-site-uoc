@@ -3,6 +3,7 @@ public
 static/admin/*
 !static/admin/?index*
 !static/admin/config.yml
+!static/admin/relative.yml
 hugo*
 git*
 *.lock*

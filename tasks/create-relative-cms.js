@@ -3,9 +3,9 @@ var fs = require('fs');
 var path = require('path');
 var cmsConfig = null;
 
-var cmsDir = "./tasks/cms/";
+var cmsDir = "./static/admin/";
 var cmsDestDir = "./static/admin/";
-var cmsConfig = fs.readFileSync(cmsDir + "config.yml").toString();
+var cmsConfig = fs.readFileSync(cmsDir + "relative.yml").toString();
 
 // creates /admin folder in every "section"
 function createRelCms(directory){

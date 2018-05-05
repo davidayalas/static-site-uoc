@@ -66,7 +66,7 @@
           </a>
           <span style="display:none" id="addSectionBlock" class="cmsAction">
             <input type="text" id="sectionName" style="color: #000;" />
-            <button type="button" class="btn btn-info" onclick="createSection({{.Lang}}, {{ $.Scratch.Get "lang" }}); return false;">
+            <button type="button" id="sectionNameButton" class="btn btn-info" >
               <span class="glyphicon glyphicon-ok"></span> OK
             </button>
           </span>
@@ -93,6 +93,11 @@
               }
               o.getElementsByTagName('head')[0].appendChild(r);
             }
+
+            //langs
+            if(!w.cms){w.cms = {};}
+            w.cms.currentlang = "{{.Lang}}";
+            w.cms.langs = "{{ $.Scratch.Get "lang" }}";
           }
       })(window,document,'/js/cms.js','/js/tingle.min.js','/css/tingle.min.css');
     </script>

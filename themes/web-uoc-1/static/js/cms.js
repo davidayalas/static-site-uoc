@@ -62,9 +62,20 @@ $(document).ready(function(){
             }
         })
 
+        //Bind events to button and input text to create section
+        $("#sectionNameButton").click(function(){
+            createSection(window.cms.currentlang, window.cms.langs);
+        })
+
+        $("#sectionName").keyup(function(event) {
+            if (event.keyCode === 13) {
+                createSection(window.cms.currentlang, window.cms.langs);
+            }
+        });
+
+        //show cms on footer and sections hidden when cms param not true
         $("#cms-editor").css("display","block");
         $(".cmsPreview").css("display","block");
-
 
         //MODAL INFO WINDOW
         window.cms.modal = new tingle.modal({
