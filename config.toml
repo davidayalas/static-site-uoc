@@ -2,6 +2,8 @@ title = "UOC Site Template"
 baseURL = "/"
 DefaultContentLanguage = "en"
 defaultContentLanguageInSubdir = true
+enableRobotsTXT = true
+
 theme = "web-uoc-1"
 
 [languages]

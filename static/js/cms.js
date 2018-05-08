@@ -131,9 +131,16 @@ function gitPut(files, token){
                 window.cms.modal.setContent('<h1>Section exists</h1>');
                 window.cms.modal.open();
             },
-            401: function(xhr) {
-                window.cms.modal.setContent('<h1>You are not logged</h1>');
+            404: function(xhr) {
+                window.cms.modal.setContent('<h1>Path not found</h1>');
                 window.cms.modal.open();
+            },
+            401: function(xhr) {
+                window.localStorage.removeItem("netlify-cms-user");
+                window.localStorage.removeItem("token");
+                //window.cms.modal.setContent('<h1>You are not logged</h1>');
+                //window.cms.modal.open();
+                gitPut(files, token);
             }
         },
         success: function (data, status) {
@@ -228,7 +235,7 @@ function createSection(lang, langs){
 function githubAuth(cb){
     if(!window.localStorage.getItem('token')){
         window.cms.authWindow = window.open(
-            "https://github.com/login/oauth/authorize?client_id=" + window.cms.client_id,
+            "https://github.com/login/oauth/authorize?scope=repo&client_id=" + window.cms.client_id,
             'NetlifyCMS Authorization',
             'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, ' +
             ('width=600, height=600, top=200, left=200);')

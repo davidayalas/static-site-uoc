@@ -1,8 +1,8 @@
 backend:
   name: github
   repo: davidayalas/static-site-uoc
-  base_url : https://netlify-oauth.azurewebsites.net
   branch: master
+  base_url: https://netlify-oauth.azurewebsites.net
   client_id: b135b68c2ba0bd0c422a
   #name: git-gateway
 
