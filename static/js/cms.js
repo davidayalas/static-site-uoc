@@ -138,9 +138,10 @@ function gitPut(files, token){
             401: function(xhr) {
                 window.localStorage.removeItem("netlify-cms-user");
                 window.localStorage.removeItem("token");
-                //window.cms.modal.setContent('<h1>You are not logged</h1>');
-                //window.cms.modal.open();
-                gitPut(files, token);
+                githubAuth(function(){
+                    gitPut(files, window.localStorage.getItem("token"));
+                });
+                
             }
         },
         success: function (data, status) {
